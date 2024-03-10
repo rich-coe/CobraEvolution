@@ -3,15 +3,7 @@
  */
 
 rootProject.name = 'loboevolution'
-include(':LoboCommon')
-include(':LoboParser')
-include(':LoboW3C')
-include(':LoboApi')
 include(':LoboHTML')
 include(':LoboUnitTest')
-project(":LoboCommon").buildFileName = 'lobocommon.gradle'
-project(":LoboParser").buildFileName = 'loboparser.gradle'
-project(":LoboW3C").buildFileName = 'lobow3c.gradle'
-project(":LoboApi").buildFileName = 'loboapi.gradle'
 project(":LoboHTML").buildFileName = 'lobohtml.gradle'
 project(":LoboUnitTest").buildFileName = 'lobounittest.gradle'

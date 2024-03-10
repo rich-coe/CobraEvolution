@@ -13,7 +13,7 @@ repositories {
 }
 
 jar {
-    archiveFileName.set('lobohtml.jar')
+    archiveFileName.set('lobocobra-5.0.jar')
 }
 
 sourceSets {
@@ -25,11 +25,6 @@ sourceSets {
 }
 
 dependencies {
-    implementation project (path: ':LoboCommon')
-    implementation project (path: ':LoboParser')
-    implementation project (path: ':LoboW3C')
-    implementation project (path: ':LoboApi')
-    // implementation project (path: ':LoboXalan')
 
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
