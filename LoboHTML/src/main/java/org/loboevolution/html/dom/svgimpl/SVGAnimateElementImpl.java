@@ -509,15 +509,15 @@ public class SVGAnimateElementImpl extends SVGAnimationElementImpl implements SV
 				// and " + afterTime + " percent complete = " +
 				// percentageComplete);
 				if (percentageComplete >= beforeTime && percentageComplete <= afterTime) {
-					beforeNumber = new Float((String) vals.elementAt(i));
-					afterNumber = new Float((String) vals.elementAt(i + 1));
+					beforeNumber = Float.valueOf((String) vals.elementAt(i));
+					afterNumber = Float.valueOf((String) vals.elementAt(i + 1));
 					// System.out.println("time between " + i + " and " +
 					// (i+1));
 					break;
 				}
 				if (i == times.size() - 2 && calcMode.equals("discrete") && percentageComplete > afterTime) {
-					beforeNumber = new Float((String) vals.elementAt(i + 1));
-					afterNumber = new Float((String) vals.elementAt(i + 1));
+					beforeNumber = Float.valueOf((String) vals.elementAt(i + 1));
+					afterNumber = Float.valueOf((String) vals.elementAt(i + 1));
 					// System.out.println("time between " + i + " and " +
 					// (i+1));
 					break;
@@ -559,16 +559,16 @@ public class SVGAnimateElementImpl extends SVGAnimationElementImpl implements SV
 			String by = getAttribute("by");
 
 			if (from.length() > 0 && to.length() > 0) { // is a from-to anim
-				Float fromNumber = new Float(from);
-				Float toNumber = new Float(to);
+				Float fromNumber = Float.valueOf(from);
+				Float toNumber = Float.valueOf(to);
 				float fromValue = fromNumber;
 				float toValue = toNumber;
 				return fromValue + percentageComplete * (toValue - fromValue);
 
 			} else if (from.length() > 0 && by.length() > 0) { // is a from-by
 				// anim
-				Float fromNumber = new Float(from);
-				Float byNumber = new Float(by);
+				Float fromNumber = Float.valueOf(from);
+				Float byNumber = Float.valueOf(by);
 				float fromValue = fromNumber;
 				float byValue = byNumber;
 				return fromValue + percentageComplete * byValue;
