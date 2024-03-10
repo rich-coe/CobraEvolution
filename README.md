@@ -2,19 +2,20 @@
 
 CobraEvolution is HTML render and parser used from LoboEvolution [credits](https://github.com/LoboEvolution/LoboEvolution).
 
-### Maven Users
+### Build
 ```
-mvn install
+gradlew --no-daemon -xtest build
 ```
 
 ### Download CobraEvolution
 
 Last release click Download Badge <br/>
-<a href="https://github.com/LoboEvolution/CobraEvolution/releases/download/4.0/cobraevolution-4.0.jar">
+** not published yet **
+<a href="https://github.com/rich-coe/CobraEvolution/releases/download/5.0/lobocobra-5.0.jar">
 <img src="https://img.shields.io/github/downloads/LoboEvolution/CobraEvolution/total.svg" alt="Download">
 </a> <br/>
 
 Code examples:
-* Html Parser => [CobraParser](https://github.com/LoboEvolution/CobraEvolution/blob/main/LoboUnitTest/src/test/java/org/loboevolution/driver/CobraParser.java)
-* Html Render and Parser => [CobraHtmlPanel](https://github.com/LoboEvolution/CobraEvolution/blob/main/LoboUnitTest/src/test/java/org/loboevolution/driver/CobraHtmlPanel.java)
-* Java Browser => [LoboEvolution](https://github.com/LoboEvolution/LoboEvolution)
+* //not-found// Html Parser => [CobraParser](https://github.com/rich-coe/CobraEvolution/blob/local/master/LoboUnitTest/src/test/java/org/loboevolution/driver/CobraParser.java)
+* Html Render and Parser => [CobraHtmlPanel](https://github.com/rich-coe/CobraEvolution/blob/local/master/LoboUnitTest/src/test/java/org/loboevolution/driver/LoboWebDriver.java)
+* //seems to have issues// Java Browser => [LoboEvolution](https://github.com/rich-coe/LoboEvolution)

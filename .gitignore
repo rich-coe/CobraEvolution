@@ -14,6 +14,7 @@ build/
 *classes*
 .vs/
 *.swp
+cscope.*
 
 # Ignore Gradle project-specific cache directory
 .gradle
