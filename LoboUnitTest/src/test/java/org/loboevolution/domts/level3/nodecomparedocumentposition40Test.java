@@ -27,15 +27,15 @@
 package org.loboevolution.domts.level3;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Attr;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 /**
@@ -63,9 +63,9 @@ public class nodecomparedocumentposition40Test extends LoboUnitTest {
         elem.setAttributeNS("http://www.w3.org/XML/1998/namespace", "xml:lang", "FR-fr");
         attr2 = elem.getAttributeNode("xml:lang");
         attrPosition = attr1.compareDocumentPosition(attr2);
-        assertEquals("isImplementationSpecific", 32, attrPosition & 32);
-        assertEquals("otherBitsZero", 0, attrPosition & 25);
+        assertEquals(32, attrPosition & 32, "isImplementationSpecific");
+        assertEquals(0, attrPosition & 25, "otherBitsZero");
         swappedPosition = attr2.compareDocumentPosition(attr1);
-        assertEquals("onlyOnePreceding", swappedPosition & 2, attrPosition & 2);
+        assertEquals(swappedPosition & 2, attrPosition & 2, "onlyOnePreceding");
     }
 }

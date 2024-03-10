@@ -27,7 +27,7 @@
 package org.loboevolution.domts.level3;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.DOMError;
 import org.loboevolution.html.dom.DOMLocator;
@@ -37,8 +37,8 @@ import org.loboevolution.html.node.*;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 
 /**
@@ -95,13 +95,13 @@ public class checkcharacternormalization02Test extends LoboUnitTest {
                 if (severity == 2) {
                     errorCount += 1;
                     errorType = error.getType();
-                    assertEquals("errorType", "check-character-normalization-failure", errorType);
+                    assertEquals("check-character-normalization-failure", errorType, "errorType");
                     locator = error.getLocation();
                     relatedNode = locator.getRelatedNode();
-                    assertSame("relatedNodeSame", text, relatedNode);
+                    assertSame(text, relatedNode, "relatedNodeSame");
                 }
             }
-            assertEquals("oneError", 1, errorCount);
+            assertEquals(1, errorCount, "oneError");
         }
     }
 }

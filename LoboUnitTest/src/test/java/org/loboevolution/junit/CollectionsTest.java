@@ -27,7 +27,7 @@
 package org.loboevolution.junit;
 
 import org.htmlunit.cssparser.dom.DOMException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.filter.ElementNameFilter;
 import org.loboevolution.html.dom.nodeimpl.traversal.NodeIteratorImpl;
@@ -39,7 +39,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.util.Iterator;
 import java.util.ListIterator;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Compare <code>NodeList</code> and <code>NodeIterator</code> implementations
@@ -60,10 +60,10 @@ public class CollectionsTest extends LoboUnitTest {
         Node lcNode = docelm.getLastChild();
         Element fcElement = docelm.getFirstElementChild();
         Element lcElement = docelm.getLastElementChild();
-        assertEquals("HEAD", fcNode.getLocalName());
-        assertEquals("HEAD", fcElement.getTagName());
-        assertEquals("BODY", lcNode.getLocalName());
-        assertEquals("BODY", lcElement.getTagName());
+        assertEquals(fcNode.getLocalName(), "HEAD");
+        assertEquals(fcElement.getTagName(), "HEAD");
+        assertEquals(lcNode.getLocalName(), "BODY");
+        assertEquals(lcElement.getTagName(), "BODY");
         assertSame(fcNode, fcElement);
         assertSame(lcNode, lcElement);
         assertSame(fcNode, lcElement.getPreviousSibling());
@@ -79,10 +79,10 @@ public class CollectionsTest extends LoboUnitTest {
         lcNode = element.getLastChild();
         fcElement = element.getFirstElementChild();
         lcElement = element.getLastElementChild();
-        assertEquals("TITLE", fcNode.getLocalName());
-        assertEquals("TITLE", fcElement.getTagName());
-        assertEquals("BASE", lcNode.getLocalName());
-        assertEquals("BASE", lcElement.getTagName());
+        assertEquals(fcNode.getLocalName(), "TITLE");
+        assertEquals(fcElement.getTagName(), "TITLE");
+        assertEquals(lcNode.getLocalName(), "BASE");
+        assertEquals(lcElement.getTagName(), "BASE");
         assertSame(fcNode, fcElement);
         assertSame(lcNode, lcElement);
         assertSame(fcNode, list.item(0));

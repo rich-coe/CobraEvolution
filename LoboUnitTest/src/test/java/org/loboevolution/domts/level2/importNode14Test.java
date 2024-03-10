@@ -27,14 +27,14 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.ProcessingInstruction;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -74,14 +74,14 @@ public class importNode14Test extends LoboUnitTest {
         pi = aNewDoc.createProcessingInstruction("target1", "data1");
         aNode = (ProcessingInstruction) doc.importNode(pi, false);
         ownerDocument = aNode.getOwnerDocument();
-        assertNotNull("ownerDocumentNotNull", ownerDocument);
+        assertNotNull(ownerDocument, "ownerDocumentNotNull");
         docType = ownerDocument.getDoctype();
         system = docType.getSystemId();
-        assertEquals("systemId", "staffNS.dtd", system);
+        assertEquals("staffNS.dtd", system, "systemId");
         target = aNode.getTarget();
-        assertEquals("piTarget", "target1", target);
+        assertEquals("target1", target, "piTarget");
         data = aNode.getData();
-        assertEquals("piData", "data1", data);
+        assertEquals("data1", data, "piData");
     }
 }
 

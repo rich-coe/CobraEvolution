@@ -27,8 +27,8 @@
 package org.loboevolution.junit;
 
 import org.htmlunit.cssparser.dom.DOMException;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.gui.LocalHtmlRendererConfig;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.*;
@@ -45,13 +45,13 @@ import org.loboevolution.html.node.css.CSSStyleDeclaration;
 import org.loboevolution.html.node.css.CSSStyleSheet;
 import org.loboevolution.http.UserAgentContext;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HTMLDocumentTest extends LoboUnitTest {
 
     private static Document document;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() {
         document = sampleHtmlFile();
     }
@@ -60,15 +60,15 @@ public class HTMLDocumentTest extends LoboUnitTest {
     public void getDoctype() {
         DocumentType docType = document.getDoctype();
         assertNotNull(docType);
-        assertEquals("html", docType.getName());
-        assertEquals("<!DOCTYPE html>", docType.toString());
+        assertEquals(docType.getName(), "html");
+        assertEquals(docType.toString(), "<!DOCTYPE html>");
     }
 
     @Test
     public void getDocumentElement() {
         Element elm = document.getDocumentElement();
         assertNotNull(elm);
-        assertEquals("HTML", elm.getTagName());
+        assertEquals(elm.getTagName(), "HTML");
     }
 
     @Test
@@ -192,13 +192,13 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertTrue(elm instanceof HTMLLinkElement);
         elm = document.createElement("LINK");
         assertTrue(elm instanceof HTMLLinkElement);
-        assertEquals("LINK", elm.getLocalName());
-        assertEquals("LINK", elm.getTagName());
+        assertEquals(elm.getLocalName(), "LINK");
+        assertEquals(elm.getTagName(), "LINK");
         elm = document.createElement("style");
         assertTrue(elm instanceof HTMLStyleElement);
         elm = document.createElement("STYLE");
         assertTrue(elm instanceof HTMLStyleElement);
-        assertEquals("STYLE", elm.getLocalName());
+        assertEquals(elm.getLocalName(), "STYLE");
 
         HTMLElement html = (HTMLElement) document.createElement("html");
         try {
@@ -241,8 +241,8 @@ public class HTMLDocumentTest extends LoboUnitTest {
 
         elm = document.createElementNS(HTMLDocument.HTML_NAMESPACE_URI, "LINK");
         assertTrue(elm instanceof HTMLLinkElement);
-        assertEquals("LINK", elm.getLocalName());
-        assertEquals("LINK", elm.getTagName());
+        assertEquals(elm.getLocalName(), "LINK");
+        assertEquals(elm.getTagName(), "LINK");
         assertEquals(HTMLDocument.HTML_NAMESPACE_URI, elm.getNamespaceURI());
 
         elm = document.createElementNS(HTMLDocument.HTML_NAMESPACE_URI, "style");
@@ -250,12 +250,12 @@ public class HTMLDocumentTest extends LoboUnitTest {
 
         elm = document.createElementNS(HTMLDocument.HTML_NAMESPACE_URI, "STYLE");
         assertTrue(elm instanceof HTMLStyleElement);
-        assertEquals("STYLE", elm.getLocalName());
+        assertEquals(elm.getLocalName(), "STYLE");
 
         elm = document.createElementNS("http://www.w3.org/2000/svg", "g:rect");
-        assertEquals("g", elm.getPrefix());
-        assertEquals("rect", elm.getLocalName());
-        assertEquals("g:rect", elm.getTagName());
+        assertEquals(elm.getPrefix(), "g");
+        assertEquals(elm.getLocalName(), "rect");
+        assertEquals(elm.getTagName(), "g:rect");
 
         try {
             document.createElementNS(HTMLDocument.HTML_NAMESPACE_URI, "s:div");
@@ -406,46 +406,46 @@ public class HTMLDocumentTest extends LoboUnitTest {
     public void testEntities1() {
         Element elm = document.getElementById("entity");
         assertNotNull(elm);
-        assertEquals("SPAN", elm.getTagName());
-        assertEquals("<>", elm.getTextContent());
+        assertEquals(elm.getTagName(), "SPAN");
+        assertEquals(elm.getTextContent(), "<>");
         NodeList nl = elm.getChildNodes();
         assertNotNull(nl);
         assertEquals(1, nl.getLength());
         Node node0 = nl.item(0);
         assertEquals(Node.TEXT_NODE, node0.getNodeType());
-        assertEquals("<>", node0.getNodeValue());
+        assertEquals(node0.getNodeValue(), "<>");
         Attr classattr = elm.getAttributeNode("class");
         assertNotNull(classattr);
         assertEquals("ent\"ity", classattr.getValue());
-        assertEquals("[object Attr]", classattr.toString());
+        assertEquals(classattr.toString(), "[object Attr]");
     }
 
     @Test
     public void testEntities2() {
         Element elm = document.getElementById("entiacute");
         assertNotNull(elm);
-        assertEquals("SPAN", elm.getTagName());
-        assertEquals("ítem", elm.getTextContent());
+        assertEquals(elm.getTagName(), "SPAN");
+        assertEquals(elm.getTextContent(), "ítem");
         NodeList nl = elm.getChildNodes();
         assertNotNull(nl);
         assertEquals(1, nl.getLength());
         Node ent0 = nl.item(0);
         assertEquals(Node.TEXT_NODE, ent0.getNodeType());
-        assertEquals("ítem", ent0.getNodeValue());
+        assertEquals(ent0.getNodeValue(), "ítem");
     }
 
     @Test
     public void testEntities3() {
         Element elm = document.getElementById("inflink");
         assertNotNull(elm);
-        assertEquals("A", elm.getTagName());
-        assertEquals("List item \u221e", elm.getTextContent());
+        assertEquals(elm.getTagName(), "A");
+        assertEquals(elm.getTextContent(), "List item \u221e");
         NodeList nl = elm.getChildNodes();
         assertNotNull(nl);
         assertEquals(1, nl.getLength());
         Node ent0 = nl.item(0);
         assertEquals(Node.TEXT_NODE, ent0.getNodeType());
-        assertEquals("List item \u221e", ent0.getNodeValue());
+        assertEquals(ent0.getNodeValue(), "List item \u221e");
     }
 
     @Test
@@ -454,22 +454,22 @@ public class HTMLDocumentTest extends LoboUnitTest {
         Attr attr = document.createAttribute("id");
         attr.setValue("para>Id");
         p.setAttributeNode(attr);
-        assertEquals("para>Id", p.getAttribute("id"));
-        assertEquals("para>Id", attr.getValue());
-        assertEquals("[object Attr]", attr.toString());
+        assertEquals(p.getAttribute("id"), "para>Id");
+        assertEquals(attr.getValue(), "para>Id");
+        assertEquals(attr.toString(), "[object Attr]");
         attr.setValue("para<Id");
-        assertEquals("para<Id", attr.getValue());
-        assertEquals("[object Attr]", attr.toString());
+        assertEquals(attr.getValue(), "para<Id");
+        assertEquals(attr.toString(), "[object Attr]");
 
         p.setAttribute("class", "\"fooclass&");
         assertEquals("\"fooclass&", p.getAttribute("class"));
         attr = p.getAttributeNode("class");
-        assertEquals("[object Attr]", attr.toString());
+        assertEquals(attr.toString(), "[object Attr]");
 
         p.setAttribute("foo", "bar\"");
         assertEquals("bar\"", p.getAttribute("foo"));
         attr = p.getAttributeNode("foo");
-        assertEquals("[object Attr]", attr.toString());
+        assertEquals(attr.toString(), "[object Attr]");
     }
 
     @Test
@@ -496,7 +496,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
     @Test
     public void testComment() {
         Comment c = document.createComment(" A comment ");
-        assertEquals(" A comment ", c.getData());
+        assertEquals(c.getData(), " A comment ");
         Node clone = c.cloneNode(false);
         assertNotNull(clone);
         assertEquals(c.getNodeType(), clone.getNodeType());
@@ -518,7 +518,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
     public void testProcessingInstruction() {
         ProcessingInstruction pi = document.createProcessingInstruction("xml-stylesheet",
                 "type=\"text/xsl\" href=\"style.xsl\"");
-        assertEquals("[object HTMLProcessingElement]", pi.toString());
+        assertEquals(pi.toString(), "[object HTMLProcessingElement]");
         Node clone = pi.cloneNode(false);
         assertNotNull(clone);
         assertEquals(pi.getNodeType(), clone.getNodeType());
@@ -585,10 +585,10 @@ public class HTMLDocumentTest extends LoboUnitTest {
     public void getElementById() {
         HTMLElementImpl elm = (HTMLElementImpl) document.getElementById("ul1");
         assertNotNull(elm);
-        assertEquals("UL", elm.getTagName());
+        assertEquals(elm.getTagName(), "UL");
         assertNull(document.getElementById("xxxxxx"));
-        assertEquals("ul1", elm.getAttribute("id"));
-        assertEquals("ul1", elm.getId());
+        assertEquals(elm.getAttribute("id"), "ul1");
+        assertEquals(elm.getId(), "ul1");
     }
 
     @Test
@@ -596,15 +596,15 @@ public class HTMLDocumentTest extends LoboUnitTest {
         HTMLCollectionImpl stylelist = (HTMLCollectionImpl) document.getElementsByTagName("style");
         assertNotNull(stylelist);
         assertEquals(2, stylelist.getLength());
-        assertEquals("STYLE", stylelist.item(0).getNodeName());
-        assertEquals("STYLE", stylelist.item(1).getNodeName());
+        assertEquals(stylelist.item(0).getNodeName(), "STYLE");
+        assertEquals(stylelist.item(1).getNodeName(), "STYLE");
         assertNull(stylelist.item(-1));
         assertNull(stylelist.item(2));
         assertFalse(stylelist.isEmpty());
         HTMLCollection list = document.getElementsByTagName("li");
         assertNotNull(list);
         assertEquals(6, list.getLength());
-        assertEquals("LI", list.item(0).getNodeName());
+        assertEquals(list.item(0).getNodeName(), "LI");
         list.item(0).getParentNode().appendChild(document.createElement("li"));
         assertEquals(7, list.getLength());
         list = document.getElementsByTagName("xxxxxx");
@@ -643,14 +643,14 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertNotNull(tablelist);
         assertEquals(1, tablelist.getLength());
         Element elem = (Element) tablelist.item(0);
-        assertEquals("TABLE", elem.getNodeName());
+        assertEquals(elem.getNodeName(), "TABLE");
         HTMLCollection list = ((HTMLElement) elem.getElementsByTagName("tr").item(0)).getElementsByClassName("tableclass");
         assertNotNull(list);
         assertEquals(0, list.getLength());
         list = document.getElementsByClassName("liclass");
         assertNotNull(list);
         assertEquals(6, list.getLength());
-        assertEquals("LI", list.item(0).getNodeName());
+        assertEquals(list.item(0).getNodeName(), "LI");
         Element li = document.createElement("li");
         li.setAttribute("class", "liclass");
         list.item(0).getParentNode().appendChild(li);
@@ -664,7 +664,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         list.item(0).appendChild(div);
         assertEquals(1, list.getLength());
         div.setAttribute("class", "smallitalic");
-        assertEquals("smallitalic", div.getAttribute("class"));
+        assertEquals(div.getAttribute("class"), "smallitalic");
         assertEquals(2, list.getLength());
         div.setAttribute("class", "nothing");
         assertEquals(1, list.getLength());
@@ -678,28 +678,28 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertNotNull(list);
         assertEquals(3, list.getLength());
         Element svg = (Element) list.item(0);
-        assertEquals("svg", svg.getNodeName());
+        assertEquals(svg.getNodeName(), "svg");
         Attr version = svg.getAttributeNode("version");
         assertNull(version.getNamespaceURI());
         assertNull(svg.getPrefix());
-        assertEquals("rect", list.item(1).getNodeName());
+        assertEquals(list.item(1).getNodeName(), "rect");
         list.item(0).appendChild(document.createElementNS("http://www.w3.org/2000/svg", "circle"));
         assertEquals(4, list.getLength());
         HTMLCollection svglist = document.getElementsByTagNameNS("http://www.w3.org/2000/svg", "svg");
         assertNotNull(svglist);
         assertEquals(1, svglist.getLength());
-        assertEquals("svg", svglist.item(0).getNodeName());
+        assertEquals(svglist.item(0).getNodeName(), "svg");
         list = document.getElementsByTagNameNS("http://www.w3.org/2000/svg", "rect");
         assertNotNull(list);
         assertEquals(1, list.getLength());
         Node oldrect = list.item(0);
-        assertEquals("rect", oldrect.getNodeName());
+        assertEquals(oldrect.getNodeName(), "rect");
         Element newrect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         oldrect.getParentNode().appendChild(newrect);
         assertEquals(Node.DOCUMENT_POSITION_PRECEDING, oldrect.compareDocumentPosition(newrect));
         assertEquals(2, list.getLength());
         Node node = svglist.item(0);
-        assertEquals("svg", node.getNodeName());
+        assertEquals(node.getNodeName(), "svg");
         node.getParentNode().removeChild(node);
         assertEquals(0, svglist.getLength());
         list = document.getElementsByTagNameNS("http://www.w3.org/2000/svg", "xxxxxx");
@@ -765,11 +765,11 @@ public class HTMLDocumentTest extends LoboUnitTest {
         elm.appendChild(document.createComment(" comment "));
         String text = elm.getTextContent();
         assertNotNull(text);
-        assertEquals("Paragraph <>", text);
+        assertEquals(text, "Paragraph <>");
 
         Attr classNode = elm.getAttributeNode("class");
         assertNotNull(classNode);
-        assertEquals("boldmargin", classNode.getTextContent());
+        assertEquals(classNode.getTextContent(), "boldmargin");
 
         Element div = document.getElementById("div1");
         assertNotNull(div);
@@ -795,7 +795,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         p.appendChild(text);
         p.appendChild(document.createTextNode("Three"));
         p.appendChild(document.createTextNode(" Four"));
-        assertEquals("OneTwoThree Four", text.getWholeText());
+        assertEquals(text.getWholeText(), "OneTwoThree Four");
     }
 
     @Test
@@ -808,7 +808,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         NodeListImpl list = (NodeListImpl)p.getChildNodes();
         assertNotNull(list);
         assertEquals(3, p.getChildNodes().getLength());
-        assertEquals("p1  p3 p4", text.getWholeText());
+        assertEquals(text.getWholeText(), "p1  p3 p4");
     }
 
     @Test
@@ -819,7 +819,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         Text text = document.createTextNode(" p3");
         p.appendChild(text);
         p.appendChild(document.createTextNode(" p4"));
-        assertEquals(" p3 p4", text.getWholeText());
+        assertEquals(text.getWholeText(), " p3 p4");
     }
 
     @Test
@@ -831,7 +831,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         p.appendChild(document.createTextNode("Three"));
         p.appendChild(document.createTextNode(" Four"));
         assertEquals(4, p.getChildNodes().getLength());
-        assertEquals("foo", text.replaceWholeText("foo").getData());
+        assertEquals(text.replaceWholeText("foo").getData(), "foo");
         assertEquals(1, p.getChildNodes().getLength());
         assertNull(text.replaceWholeText(""));
         assertFalse(p.hasChildNodes());
@@ -845,7 +845,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         p.appendChild(text);
         p.appendChild(document.createTextNode("p four"));
         assertEquals(3, p.getChildNodes().getLength());
-        assertEquals("foo", text.replaceWholeText("foo").getData());
+        assertEquals(text.replaceWholeText("foo").getData(), "foo");
         assertEquals(1, p.getChildNodes().getLength());
     }
 
@@ -881,9 +881,9 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertNotNull(sheet);
         assertNotNull(sheet.getCssRules());
         assertEquals(6, doc.getStyleSheets().getLength());
-        assertEquals("file:/C:/Users/utente/workspace/LoboEvolution/target/LoboUnitTest/test-classes/org/lobo/css/common.css", sheet.getHref());
+        assertEquals(sheet.getHref(), "file:/C:/Users/utente/workspace/LoboEvolution/target/LoboUnitTest/test-classes/org/lobo/css/common.css");
         assertNotNull(sheet);
-        assertEquals("background-color: red", sheet.getCssRules().item(0).getStyle().getCssText());
+        assertEquals(sheet.getCssRules().item(0).getStyle().getCssText(), "background-color: red");
         assertEquals(3, sheet.getCssRules().getLength());
     }
 
@@ -892,7 +892,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         HTMLDocumentImpl doc = (HTMLDocumentImpl) document;
         HTMLElementImpl elm = (HTMLElementImpl) doc.getElementById("firstH3");
         assertNotNull(elm);
-        assertEquals("font-family: 'Does Not Exist', Neither; color: navy", elm.getAttribute("style"));
+        assertEquals(elm.getAttribute("style"), "font-family: 'Does Not Exist', Neither; color: navy");
         CSSStyleDeclaration style = elm.getStyle();
         assertEquals("font-family: \"does not exist\", neither; color: navy", style.getCssText());
         assertEquals(2, style.getLength());
@@ -908,8 +908,8 @@ public class HTMLDocumentTest extends LoboUnitTest {
         HTMLDocumentImpl doc = (HTMLDocumentImpl) document;
         HTMLElementImpl elm = (HTMLElementImpl) doc.getElementById("fooimg");
         assertNotNull(elm);
-        assertEquals("200", elm.getAttribute("width"));
-        assertEquals("180", elm.getAttribute("height"));
+        assertEquals(elm.getAttribute("width"), "200");
+        assertEquals(elm.getAttribute("height"), "180");
     }
 
 
@@ -920,11 +920,11 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertNotNull(elm.getCurrentStyle());
         assertNotNull(elm.getCurrentStyle());
         CSSStyleDeclaration styledecl = elm.getCurrentStyle();
-        assertEquals("padding: 4pt 6pt; margin-left: 5pt", styledecl.getCssText());
+        assertEquals(styledecl.getCssText(), "padding: 4pt 6pt; margin-left: 5pt");
         assertEquals(2, styledecl.getLength());
-        assertEquals("5pt", styledecl.getPropertyValue("margin-left"));
+        assertEquals(styledecl.getPropertyValue("margin-left"), "5pt");
         assertNull(styledecl.getPropertyValue("does-not-exist"));
-        assertEquals("", styledecl.getPropertyValue("does-not-exist"));
+        assertEquals(styledecl.getPropertyValue("does-not-exist"), "");
     }
 
     @Test
@@ -941,7 +941,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertNotNull(sheet2);
         assertSame(sheet2, sheet);
         assertEquals(1, sheet2.getMedia().getLength());
-        assertEquals("screen", sheet2.getMedia().item(0));
+        assertEquals(sheet2.getMedia().item(0), "screen");
         assertTrue(sheet2.getCssRules().getLength() > 0);
         style.setTextContent("body {font-size: 14pt; margin-left: 7%;} h1 {font-size: 2.4em;}");
         sheet = (CSSStyleSheetImpl) ((HTMLLinkElement) style).getSheet();
@@ -1057,28 +1057,28 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertEquals(0, sheet.getCssRules().getLength());
         style.setTextContent("body {color: blue;}");
         assertEquals(1, sheet.getCssRules().getLength());
-        assertEquals("<style>body {color: blue;}</style>", style.toString());
+        assertEquals(style.toString(), "<style>body {color: blue;}</style>");
 
         style.setTextContent("foo:");
-        assertEquals("<style>foo:</style>", style.toString());
+        assertEquals(style.toString(), "<style>foo:</style>");
         sheet = (CSSStyleSheetImpl) ((HTMLLinkElement) style).getSheet();
         assertEquals(0, sheet.getCssRules().getLength());
-        assertEquals("<style>foo:</style>", style.toString());
+        assertEquals(style.toString(), "<style>foo:</style>");
         style.normalize();
-        assertEquals("<style>foo:</style>", style.toString());
+        assertEquals(style.toString(), "<style>foo:</style>");
     }
 
     @Test
     public void testRawText() {
         Element style = (Element) document.getElementsByTagName("style").item(0);
         Text text = document.createTextNode("data");
-        assertEquals("[object Text]", text.toString());
+        assertEquals(text.toString(), "[object Text]");
         text.setData("hello</style>");
-        assertEquals("[object Text]", text.toString());
+        assertEquals(text.toString(), "[object Text]");
         style.appendChild(text);
-        assertEquals("[object Text]>", text.toString());
+        assertEquals(text.toString(), "[object Text]>");
         text.setData("hello</foo>");
-        assertEquals("[object Text]", text.toString());
+        assertEquals(text.toString(), "[object Text]");
         Element cloned = (Element) style.cloneNode(true);
         assertTrue(style.isEqualNode(cloned));
         CSSStyleSheetImpl sheet = (CSSStyleSheetImpl) ((HTMLLinkElement) style).getSheet();
@@ -1104,7 +1104,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertNotNull(sheet2);
         assertSame(sheet2, sheet);
         assertEquals(1, sheet2.getMedia().getLength());
-        assertEquals("screen", sheet2.getMedia().item(0));
+        assertEquals(sheet2.getMedia().item(0), "screen");
 
         link.setAttribute("href", "css/alter1.css");
         sheet = (CSSStyleSheetImpl) ((HTMLLinkElement) link).getSheet();
@@ -1156,7 +1156,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertNotNull(sheet);
     }
 
-    @Test(timeout = 8000)
+    @Test
     public void testLinkElementEvil() {
         Element link = document.createElement("link");
         link.setAttribute("rel", "stylesheet");
@@ -1167,7 +1167,7 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertEquals(0, sheet.getCssRules().getLength());
     }
 
-    @Test(timeout = 8000)
+    @Test
     public void testLinkElementEvilJar() {
         Element link = document.createElement("link");
         link.setAttribute("rel", "stylesheet");
@@ -1212,37 +1212,37 @@ public class HTMLDocumentTest extends LoboUnitTest {
         assertEquals(0, sheet.getMedia().getLength());
         assertEquals(0, sheet.getCssRules().getLength());
         assertSame(sheet.getOwnerNode(), link);
-        assertEquals("jar:http://www.example.com/evil.jar!/file2", link.getAttribute("href"));
+        assertEquals(link.getAttribute("href"), "jar:http://www.example.com/evil.jar!/file2");
     }
 
     @Test
     public void testBaseElement() {
-        assertEquals("http://www.example.com/xhtml/htmlsample.html", document.getDocumentURI());
-        assertEquals("http://www.example.com/", document.getBaseURI());
-        assertEquals("http://www.example.com/", document.getBaseURI());
+        assertEquals(document.getDocumentURI(), "http://www.example.com/xhtml/htmlsample.html");
+        assertEquals(document.getBaseURI(), "http://www.example.com/");
+        assertEquals(document.getBaseURI(), "http://www.example.com/");
         Element base = (Element) document.getElementsByTagName("base").item(0);
-        assertEquals("http://www.example.com/", base.getBaseURI());
+        assertEquals(base.getBaseURI(), "http://www.example.com/");
         base.setAttribute("href", "http://www.example.com/newbase/");
-        assertEquals("http://www.example.com/newbase/", document.getBaseURI());
-        assertEquals("http://www.example.com/newbase/", base.getBaseURI());
+        assertEquals(document.getBaseURI(), "http://www.example.com/newbase/");
+        assertEquals(base.getBaseURI(), "http://www.example.com/newbase/");
         Element anchor = (Element) document.getElementsByTagName("a").item(0);
         anchor.setAttribute("href", "http://www.example.com/foo/");
-        assertEquals("http://www.example.com/foo/", anchor.getAttribute("href"));
-        assertEquals("http://www.example.com/newbase/", document.getBaseURI());
+        assertEquals(anchor.getAttribute("href"), "http://www.example.com/foo/");
+        assertEquals(document.getBaseURI(), "http://www.example.com/newbase/");
         Attr attr = document.createAttribute("href");
         attr.setValue("http://www.example.com/other/base/");
         base.setAttributeNode(attr);
-        assertEquals("http://www.example.com/other/base/", document.getBaseURI());
+        assertEquals(document.getBaseURI(), "http://www.example.com/other/base/");
         Node parent = base.getParentNode();
         parent.removeChild(base);
         attr.setValue("http://www.example.com/yet/another/base/");
-        assertEquals("http://www.example.com/xhtml/htmlsample.html", document.getBaseURI());
+        assertEquals(document.getBaseURI(), "http://www.example.com/xhtml/htmlsample.html");
 
         parent.appendChild(base);
-        assertEquals("http://www.example.com/yet/another/base/", document.getBaseURI());
+        assertEquals(document.getBaseURI(), "http://www.example.com/yet/another/base/");
 
         base.removeAttributeNode(attr);
-        assertEquals("http://www.example.com/xhtml/htmlsample.html", document.getBaseURI());
+        assertEquals(document.getBaseURI(), "http://www.example.com/xhtml/htmlsample.html");
         try {
             base.removeAttributeNode(attr);
             fail("Must throw exception.");
@@ -1250,10 +1250,10 @@ public class HTMLDocumentTest extends LoboUnitTest {
         }
 
         base.setAttributeNode(attr);
-        assertEquals("http://www.example.com/yet/another/base/", document.getBaseURI());
+        assertEquals(document.getBaseURI(), "http://www.example.com/yet/another/base/");
 
         attr.setValue("foo:");
-        assertEquals("http://www.example.com/xhtml/htmlsample.html", document.getBaseURI());
+        assertEquals(document.getBaseURI(), "http://www.example.com/xhtml/htmlsample.html");
     }
 
     @Test

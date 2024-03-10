@@ -27,13 +27,13 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.*;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -82,29 +82,29 @@ public class documentimportnode19Test extends LoboUnitTest {
         docType = doc.getDoctype();
         docImp = domImpl.createDocument("http://www.w3.org/DOM/Test", "a:b", docTypeNull);
         nodeMap = docType.getEntities();
-        assertNotNull("entitiesNotNull", nodeMap);
+        assertNotNull(nodeMap, "entitiesNotNull");
         entity2 = (EntityReference) nodeMap.getNamedItem("ent2");
         entity6 = (EntityReference) nodeMap.getNamedItem("ent6");
         entityImp2 = (EntityReference) docImp.importNode(entity2, false);
         entityImp6 = (EntityReference) docImp.importNode(entity6, true);
         nodeName = entity2.getNodeName();
         nodeNameImp = entityImp2.getNodeName();
-        assertEquals("documentimportnode19_Ent2NodeName", nodeName, nodeNameImp);
+        assertEquals(nodeName, nodeNameImp, "documentimportnode19_Ent2NodeName");
         nodeName = entity6.getNodeName();
         nodeNameImp = entityImp6.getNodeName();
-        assertEquals("documentimportnode19_Ent6NodeName", nodeName, nodeNameImp);
+        assertEquals(nodeName, nodeNameImp, "documentimportnode19_Ent6NodeName");
         systemId = entity2.getSystemId();
         systemIdImp = entityImp2.getSystemId();
-        assertEquals("documentimportnode19_Ent2SystemId", systemId, systemIdImp);
+        assertEquals(systemId, systemIdImp, "documentimportnode19_Ent2SystemId");
         systemId = entity6.getSystemId();
         systemIdImp = entityImp6.getSystemId();
-        assertEquals("documentimportnode19_Ent6SystemId", systemId, systemIdImp);
+        assertEquals(systemId, systemIdImp, "documentimportnode19_Ent6SystemId");
         notationName = entity2.getNotationName();
         notationNameImp = entityImp2.getNotationName();
-        assertEquals("documentimportnode19_Ent2NotationName", notationName, notationNameImp);
+        assertEquals(notationName, notationNameImp, "documentimportnode19_Ent2NotationName");
         notationName = entity6.getNotationName();
         notationNameImp = entityImp6.getNotationName();
-        assertEquals("documentimportnode19_Ent6NotationName", notationName, notationNameImp);
+        assertEquals(notationName, notationNameImp, "documentimportnode19_Ent6NotationName");
     }
 
 }

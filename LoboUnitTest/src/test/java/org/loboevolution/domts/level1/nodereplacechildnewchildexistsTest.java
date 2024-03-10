@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Node;
 import org.loboevolution.html.node.NodeList;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 
 /**
@@ -111,13 +111,13 @@ public class nodereplacechildnewchildexistsTest extends LoboUnitTest {
         }
 
         replacedChild = employeeNode.replaceChild(newChild, oldChild);
-        assertSame("return_value_same", oldChild, replacedChild);
+        assertSame(oldChild, replacedChild, "return_value_same");
         for (int indexN100DE = 0; indexN100DE < childList.getLength(); indexN100DE++) {
             childNode = childList.item(indexN100DE);
             childName = childNode.getNodeName();
             actual.add(childName);
         }
-        assertEquals("childNames", expected, actual);
+        assertEquals(expected, actual, "childNames");
     }
 
 }

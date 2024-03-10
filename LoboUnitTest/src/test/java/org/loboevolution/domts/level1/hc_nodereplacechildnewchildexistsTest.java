@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
@@ -37,8 +37,8 @@ import org.loboevolution.html.node.Node;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 
 /**
@@ -85,7 +85,7 @@ public class hc_nodereplacechildnewchildexistsTest extends LoboUnitTest {
         newChild = childList.item(0);
         oldChild = childList.item(5);
         replacedChild = employeeNode.replaceChild(newChild, oldChild);
-        assertSame("return_value_same", oldChild, replacedChild);
+        assertSame(oldChild, replacedChild, "return_value_same");
         childList = ((Element) employeeNode).getElementsByTagName("*");
         for (int indexN10094 = 0; indexN10094 < childList.getLength(); indexN10094++) {
             childNode = childList.item(indexN10094);
@@ -95,12 +95,12 @@ public class hc_nodereplacechildnewchildexistsTest extends LoboUnitTest {
             if (nodeType == 1) {
                 actual.add(childName);
             } else {
-                assertEquals("textNodeType", 3, nodeType);
-                assertEquals("textNodeName", "#text", childName);
+                assertEquals(3, nodeType, "textNodeType");
+                assertEquals("#text", childName, "textNodeName");
             }
 
         }
-        assertEquals("childNames", expected, actual);
+        assertEquals(expected, actual, "childNames");
     }
 }
 

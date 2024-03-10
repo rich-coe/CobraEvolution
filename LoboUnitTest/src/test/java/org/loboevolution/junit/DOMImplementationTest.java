@@ -27,8 +27,8 @@
 package org.loboevolution.junit;
 
 import org.htmlunit.cssparser.dom.DOMException;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.gui.LocalHtmlRendererConfig;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.nodeimpl.DOMImplementationImpl;
@@ -37,13 +37,13 @@ import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.Element;
 import org.loboevolution.http.UserAgentContext;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DOMImplementationTest extends LoboUnitTest {
 
     private static DOMImplementationImpl domImpl;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() {
         UserAgentContext context = new UserAgentContext(new LocalHtmlRendererConfig(), true);
         context.setUserAgentEnabled(false);
@@ -75,7 +75,7 @@ public class DOMImplementationTest extends LoboUnitTest {
         assertNull(doctype.getNextSibling());
         assertNull(doctype.getPreviousSibling());
         Document document = domImpl.createDocument(null, "html", doctype);
-        assertEquals("CSS1Compat", document.getCompatMode());
+        assertEquals(document.getCompatMode(), "CSS1Compat");
         Element docelm = document.getDocumentElement();
         assertNotNull(docelm);
 		assertSame(docelm, doctype.getNextSibling());
@@ -90,7 +90,7 @@ public class DOMImplementationTest extends LoboUnitTest {
     @Test
     public void testCreateDocumentType() {
         DocumentType doctype = domImpl.createDocumentType("html", null, null);
-        assertEquals("<!DOCTYPE html>", doctype.toString());
+        assertEquals(doctype.toString(), "<!DOCTYPE html>");
         //
         doctype = domImpl.createDocumentType("html", "-//W3C//DTD XHTML 1.0 Strict//EN", null);
         assertEquals("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\">", doctype.toString());

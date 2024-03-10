@@ -27,11 +27,11 @@
 package org.loboevolution.domts.level3;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -48,7 +48,7 @@ public class documentgetdocumenturi01Test extends LoboUnitTest {
         String docURI;
         doc = sampleXmlFile("hc_staff.xml");
         docURI = doc.getDocumentURI();
-        assertNotNull("documentgetdocumenturi01", docURI);
+        assertNotNull(docURI, "documentgetdocumenturi01");
     }
 }
 

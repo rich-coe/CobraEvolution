@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Attr;
@@ -35,8 +35,8 @@ import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -72,11 +72,11 @@ public class setAttributeNodeNS04Test extends LoboUnitTest {
         doc = sampleXmlFile("staffNS.xml");
         elementList = doc.getElementsByTagName("emp:address");
         testAddr = elementList.item(0);
-        assertNotNull("empAddrNotNull", testAddr);
+        assertNotNull(testAddr, "empAddrNotNull");
         newAttr = doc.createAttributeNS("http://www.nist.gov", "xxx:domestic");
         newAddrAttr = ((Element) testAddr).setAttributeNodeNS(newAttr);
         newName = newAddrAttr.getNodeName();
-        assertEquals("nodeName", "xxx:domestic", newName);
+        assertEquals("xxx:domestic", newName, "nodeName");
     }
 }
 

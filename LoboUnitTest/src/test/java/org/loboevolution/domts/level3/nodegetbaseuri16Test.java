@@ -27,7 +27,7 @@
 package org.loboevolution.domts.level3;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
@@ -57,7 +57,7 @@ public class nodegetbaseuri16Test extends LoboUnitTest {
         pElem = (Element) pList.item(0);
         entRef = (EntityReference) pElem.getLastChild();
         baseURI = entRef.getBaseURI();
-        assertURIEquals("baseURI", null, null, null, null, "external_barfoo", null, null, Boolean.TRUE, baseURI);
+        assertURIEquals("baseURI", null, null, null, null, "external_barfoo", null, null, true, baseURI);
     }
 }
 

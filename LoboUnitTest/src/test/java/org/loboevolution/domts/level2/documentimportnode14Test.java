@@ -27,14 +27,14 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.*;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 /**
@@ -78,9 +78,9 @@ public class documentimportnode14Test extends LoboUnitTest {
         newDoc = domImpl.createDocument(nullNS, "staff", nullDocType);
         imported = newDoc.importNode(employeeElem, true);
         attrNode = ((Element) imported).getAttributeNodeNS(nullNS, "defaultAttr");
-        assertNull("defaultAttrNotImported", attrNode);
+        assertNull(attrNode, "defaultAttrNotImported");
         attrValue = ((Element) imported).getAttributeNS("http://www.w3.org/2000/xmlns/", "emp");
-        assertEquals("explicitAttrImported", "http://www.nist.gov", attrValue);
+        assertEquals("http://www.nist.gov", attrValue, "explicitAttrImported");
     }
 }
 

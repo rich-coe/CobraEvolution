@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
@@ -35,7 +35,7 @@ import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.Element;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -76,16 +76,16 @@ public class importNode05Test extends LoboUnitTest {
         aNewDoc = sampleXmlFile("staffNS.xml");
         addresses = aNewDoc.getElementsByTagName("address");
         element = (Element) addresses.item(0);
-        assertNotNull("empAddressNotNull", element);
+        assertNotNull(element, "empAddressNotNull");
         aNode = doc.importNode(element, false);
         hasChild = aNode.hasChildNodes();
-        assertFalse("hasChild", hasChild);
+        assertFalse(hasChild, "hasChild");
         ownerDocument = aNode.getOwnerDocument();
         docType = ownerDocument.getDoctype();
         system = docType.getSystemId();
-        assertEquals("dtdSystemId", "staffNS.dtd", system);
+        assertEquals("staffNS.dtd", system, "dtdSystemId");
         name = aNode.getNodeName();
-        assertEquals("nodeName", "ADDRESS", name);
+        assertEquals("ADDRESS", name, "nodeName");
     }
 }
 

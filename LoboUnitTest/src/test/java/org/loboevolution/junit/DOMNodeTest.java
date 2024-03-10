@@ -27,8 +27,8 @@
 package org.loboevolution.junit;
 
 import org.htmlunit.cssparser.dom.DOMException;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.gui.LocalHtmlRendererConfig;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
@@ -36,14 +36,14 @@ import org.loboevolution.html.dom.nodeimpl.DOMImplementationImpl;
 import org.loboevolution.html.node.*;
 import org.loboevolution.http.UserAgentContext;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DOMNodeTest extends LoboUnitTest {
 
 	private static Document document;
 	private static DOMImplementationImpl impl;
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpBeforeClass() {
 		UserAgentContext context = new UserAgentContext(new LocalHtmlRendererConfig(), true);
 		context.setUserAgentEnabled(false);
@@ -146,7 +146,7 @@ public class DOMNodeTest extends LoboUnitTest {
 		assertTrue((Boolean) config.getParameter("normalize-characters"));
 		elm.normalize();
 		assertEquals(4, elm.getChildNodes().getLength());
-		assertEquals(" foo bar \u00c5 ", elm.getChildNodes().item(1).getNodeValue());
+		assertEquals(elm.getChildNodes().item(1).getNodeValue(), " foo bar \u00c5 ");
 		//
 		html.appendChild(document.createTextNode("\n     "));
 		html.appendChild(document.createTextNode("\t     "));
@@ -158,7 +158,7 @@ public class DOMNodeTest extends LoboUnitTest {
 		document.normalizeDocument();
 		assertEquals(6, html.getChildNodes().getLength());
 		assertEquals(4, elm.getChildNodes().getLength());
-		assertEquals(" ", html.getChildNodes().item(3).getNodeValue());
+		assertEquals(html.getChildNodes().item(3).getNodeValue(), " ");
 		assertEquals(Node.COMMENT_NODE, html.getChildNodes().item(4).getNodeType());
 		assertEquals(Node.COMMENT_NODE, html.getChildNodes().item(5).getNodeType());
 		// Use computed styles (same result, just slower)
@@ -246,40 +246,40 @@ public class DOMNodeTest extends LoboUnitTest {
 	public void getNodeValue() {
 		document = sampleHtmlFile();
 		Element elm = document.createElement("p");
-		assertEquals("p", elm.getNodeName());
+		assertEquals(elm.getNodeName(), "p");
 		assertNull(elm.getNodeValue());
 		Text text = document.createTextNode("foo");
-		assertEquals("#text", text.getNodeName());
-		assertEquals("foo", text.getNodeValue());
+		assertEquals(text.getNodeName(), "#text");
+		assertEquals(text.getNodeValue(), "foo");
 		text.setNodeValue("bar");
-		assertEquals("bar", text.getNodeValue());
+		assertEquals(text.getNodeValue(), "bar");
 		Attr attr = document.createAttribute("id");
 		attr.setValue("fooid");
-		assertEquals("id", attr.getNodeName());
-		assertEquals("fooid", attr.getNodeValue());
+		assertEquals(attr.getNodeName(), "id");
+		assertEquals(attr.getNodeValue(), "fooid");
 		attr.setNodeValue("barid");
-		assertEquals("barid", attr.getNodeValue());
+		assertEquals(attr.getNodeValue(), "barid");
 		CDATASection cdata = document.createCDATASection("var j = 1");
-		assertEquals("#cdata-section", cdata.getNodeName());
-		assertEquals("var j = 1", cdata.getNodeValue());
+		assertEquals(cdata.getNodeName(), "#cdata-section");
+		assertEquals(cdata.getNodeValue(), "var j = 1");
 		cdata.setNodeValue("foo");
-		assertEquals("foo", cdata.getNodeValue());
+		assertEquals(cdata.getNodeValue(), "foo");
 		Comment comment = document.createComment("***");
-		assertEquals("#comment", comment.getNodeName());
-		assertEquals("***", comment.getNodeValue());
+		assertEquals(comment.getNodeName(), "#comment");
+		assertEquals(comment.getNodeValue(), "***");
 		comment.setNodeValue("comment");
-		assertEquals("comment", comment.getNodeValue());
+		assertEquals(comment.getNodeValue(), "comment");
 		DocumentFragment fragment = document.createDocumentFragment();
-		assertEquals("[object DocumentFragment]", fragment.getNodeName());
+		assertEquals(fragment.getNodeName(), "[object DocumentFragment]");
 		assertNull(fragment.getNodeValue());
-		assertEquals("[object HTMLDocument]", document.getNodeName());
+		assertEquals(document.getNodeName(), "[object HTMLDocument]");
 		assertNull(document.getNodeValue());
 		ProcessingInstruction pi = document.createProcessingInstruction("xml-stylesheet",
 				"type=\"text/css\" href=\"sheet.css\"");
-		assertEquals("xml-stylesheet", pi.getNodeName());
+		assertEquals(pi.getNodeName(), "xml-stylesheet");
 		assertEquals("type=\"text/css\" href=\"sheet.css\"", pi.getNodeValue());
 		DocumentType dt = impl.createDocumentType("xhtml", "-//W3C//DTD XHTML 1.1//EN", "w3c/xhtml11.dtd");
-		assertEquals("xhtml", dt.getNodeName());
+		assertEquals(dt.getNodeName(), "xhtml");
 		assertNull(dt.getNodeValue());
 	}
 
@@ -850,8 +850,8 @@ public class DOMNodeTest extends LoboUnitTest {
 		DocumentFragment fragment = createDocumentFragment();
 		body.insertBefore(fragment, elm3);
 		assertEquals(4, body.getChildNodes().getLength());
-		assertEquals("span", body.getChildNodes().item(2).getNodeName());
-		assertEquals("p", body.getChildNodes().item(3).getNodeName());
+		assertEquals(body.getChildNodes().item(2).getNodeName(), "span");
+		assertEquals(body.getChildNodes().item(3).getNodeName(), "p");
 		assertNotNull(fragment.getFirstChild());
 		assertNotNull(fragment.getLastChild());
 		assertNotNull(fragment.getParentNode());
@@ -1081,7 +1081,7 @@ public class DOMNodeTest extends LoboUnitTest {
 		assertNull(foo2.getParentNode());
 		Text text = (Text) body2.replaceChild(foo2, foo1);
 		assertSame(foo1, text);
-		assertEquals("foo1", text.getTextContent());
+		assertEquals(text.getTextContent(), "foo1");
 		assertEquals(body2, foo2.getParentNode());
 		assertNull(text.getParentNode());
 	}
@@ -1142,7 +1142,7 @@ public class DOMNodeTest extends LoboUnitTest {
 		assertSame(span, body.getFirstElementChild());
 		assertSame(p, body.getLastChild());
 		assertSame(p, body.getLastElementChild());
-		assertEquals("div2", div2.getAttribute("id"));
+		assertEquals(div2.getAttribute("id"), "div2");
 		assertEquals(1, listspan.getLength());
 		assertEquals(1, listdiv.getLength());
 		assertEquals(1, listp.getLength());
@@ -1195,7 +1195,7 @@ public class DOMNodeTest extends LoboUnitTest {
 		DocumentFragment fragment = createDocumentFragment();
 		body.replaceChild(fragment, elm3);
 		assertEquals(3, body.getChildNodes().getLength());
-		assertEquals("p", body.getChildNodes().item(2).getNodeName());
+		assertEquals(body.getChildNodes().item(2).getNodeName(), "p");
 		assertNotNull(fragment.getFirstChild());
 		assertNotNull(fragment.getLastChild());
 		assertNull(fragment.getParentNode());

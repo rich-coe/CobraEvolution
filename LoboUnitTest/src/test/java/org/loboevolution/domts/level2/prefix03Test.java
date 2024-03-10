@@ -27,14 +27,14 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -64,9 +64,9 @@ public class prefix03Test extends LoboUnitTest {
         doc = sampleXmlFile("staffNS.xml");
         elementList = doc.getElementsByTagName("employee");
         testEmployee = (Element)elementList.item(0);
-        assertNotNull("empEmployeeNotNull", testEmployee);
+        assertNotNull(testEmployee, "empEmployeeNotNull");
         prefix = testEmployee.getPrefix();
-        assertEquals("prefix", "emp", prefix);
+        assertEquals("emp", prefix, "prefix");
     }
 
 }

@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Attr;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -68,9 +68,9 @@ public class hc_elementremoveattributenodeTest extends LoboUnitTest {
         testEmployee = (Element) elementList.item(2);
         streetAttr = testEmployee.getAttributeNode("class");
         removedAttr = testEmployee.removeAttributeNode(streetAttr);
-        assertNotNull("removedAttrNotNull", removedAttr);
+        assertNotNull(removedAttr, "removedAttrNotNull");
         removedValue = removedAttr.getValue();
-        assertEquals("elementRemoveAttributeNodeAssert", "No", removedValue);
+        assertEquals("No", removedValue, "elementRemoveAttributeNodeAssert");
     }
 }
 

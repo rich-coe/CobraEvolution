@@ -27,12 +27,12 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -70,11 +70,11 @@ public class documentcreateelementNS01Test extends LoboUnitTest {
         localName = element.getLocalName();
         prefix = element.getPrefix();
         tagName = element.getTagName();
-        assertEquals("documentcreateelementNS01_nodeName", "XML:XML", nodeName);
-        assertEquals("documentcreateelementNS01_namespaceURI", "http://www.w3.org/DOM/Test/level2", nsURI);
-        assertEquals("documentcreateelementNS01_localName", "XML", localName);
-        assertEquals("documentcreateelementNS01_prefix", "XML", prefix);
-        assertEquals("documentcreateelementNS01_tagName", "XML:XML", tagName);
+        assertEquals("XML:XML", nodeName, "documentcreateelementNS01_nodeName");
+        assertEquals("http://www.w3.org/DOM/Test/level2", nsURI, "documentcreateelementNS01_namespaceURI");
+        assertEquals("XML", localName, "documentcreateelementNS01_localName");
+        assertEquals("XML", prefix, "documentcreateelementNS01_prefix");
+        assertEquals("XML:XML", tagName, "documentcreateelementNS01_tagName");
     }
 }
 

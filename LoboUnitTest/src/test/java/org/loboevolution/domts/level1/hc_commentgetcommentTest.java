@@ -27,14 +27,14 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Node;
 import org.loboevolution.html.node.NodeList;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -74,13 +74,13 @@ public class hc_commentgetcommentTest extends LoboUnitTest {
 
             if (childType == 8) {
                 childName = child.getNodeName();
-                assertEquals("nodeName", "#comment", childName);
+                assertEquals("#comment", childName, "nodeName");
                 childValue = child.getNodeValue();
-                assertEquals("nodeValue", " This is comment number 1.", childValue);
+                assertEquals(" This is comment number 1.", childValue, "nodeValue");
                 commentCount += 1;
             }
         }
-        assertTrue("atMostOneComment", (commentCount < 2));
+        assertTrue((commentCount < 2), "atMostOneComment");
     }
 
 }

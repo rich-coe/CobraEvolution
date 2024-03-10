@@ -27,13 +27,13 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Attr;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -77,11 +77,11 @@ public class elementgetattributenodens01Test extends LoboUnitTest {
         attNodeName = attribute.getNodeName();
         attrLocalName = attribute.getLocalName();
         attrNS = attribute.getNamespaceURI();
-        assertEquals("elementgetattributenodens01_attrValue", null, attrValue);
-        assertEquals("elementgetattributenodens01_attrName", "l2:att", attrName);
-        assertEquals("elementgetattributenodens01_attrNodeName", "l2:att", attNodeName);
-        assertEquals("elementgetattributenodens01_attrLocalName", "att", attrLocalName);
-        assertEquals("elementgetattributenodens01_attrNs", "http://www.w3.org/DOM/Level2", attrNS);
+        assertEquals(null, attrValue, "elementgetattributenodens01_attrValue");
+        assertEquals("l2:att", attrName, "elementgetattributenodens01_attrName");
+        assertEquals("l2:att", attNodeName, "elementgetattributenodens01_attrNodeName");
+        assertEquals("att", attrLocalName, "elementgetattributenodens01_attrLocalName");
+        assertEquals("http://www.w3.org/DOM/Level2", attrNS, "elementgetattributenodens01_attrNs");
     }
 }
 

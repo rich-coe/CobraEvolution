@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DOMImplementation;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 /**
@@ -76,8 +76,8 @@ public class createDocument07Test extends LoboUnitTest {
         aNewDoc = domImpl.createDocument(namespaceURI, qualifiedName, docType);
         nodeName = aNewDoc.getNodeName();
         nodeValue = aNewDoc.getNodeValue();
-        assertEquals("nodeName", "[object HTMLDocument]", nodeName);
-        assertNull("nodeValue", nodeValue);
+        assertEquals("[object HTMLDocument]", nodeName, "nodeName");
+        assertNull(nodeValue, "nodeValue");
     }
 }
 

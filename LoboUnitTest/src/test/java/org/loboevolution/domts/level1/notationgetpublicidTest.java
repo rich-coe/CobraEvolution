@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.Notation;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.NamedNodeMap;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -62,12 +62,12 @@ public class notationgetpublicidTest extends LoboUnitTest {
         String publicId;
         doc = sampleXmlFile("staff.xml");
         docType = doc.getDoctype();
-        assertNotNull("docTypeNotNull", docType);
+        assertNotNull(docType, "docTypeNotNull");
         notations = docType.getNotations();
-        assertNotNull("notationsNotNull", notations);
+        assertNotNull(notations, "notationsNotNull");
         notationNode = (Notation) notations.getNamedItem("notation1");
         publicId = notationNode.getPublicId();
-        assertEquals("publicId", "notation1File", publicId);
+        assertEquals("notation1File", publicId, "publicId");
     }
 
 }

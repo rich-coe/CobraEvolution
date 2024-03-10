@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
@@ -37,8 +37,8 @@ import org.loboevolution.html.node.Node;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -87,16 +87,16 @@ public class documenttypegetentitiesTest extends LoboUnitTest {
         Node entity;
         doc = sampleXmlFile("staff.xml");
         docType = doc.getDoctype();
-        assertNotNull("docTypeNotNull", docType);
+        assertNotNull(docType, "docTypeNotNull");
         entityList = docType.getEntities();
-        assertNotNull("entitiesNotNull", entityList);
+        assertNotNull(entityList, "entitiesNotNull");
         for (int indexN1007B = 0; indexN1007B < entityList.getLength(); indexN1007B++) {
             entity = entityList.item(indexN1007B);
             name = entity.getNodeName();
             nameList.add(name);
         }
 
-        assertEquals("entityNames", expectedResult, nameList);
+        assertEquals(expectedResult, nameList, "entityNames");
 
     }
 }

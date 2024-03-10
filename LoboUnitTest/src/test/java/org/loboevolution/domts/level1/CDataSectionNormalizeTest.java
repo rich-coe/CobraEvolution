@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.CDATASection;
@@ -35,8 +35,8 @@ import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 import org.loboevolution.html.node.NodeList;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -72,13 +72,13 @@ public class CDataSectionNormalizeTest extends LoboUnitTest {
         lChild.normalize();
         childNodes = lChild.getChildNodes();
         cdataN = (CDATASection) childNodes.item(1);
-        assertNotNull("firstCDATASection", cdataN);
+        assertNotNull(cdataN, "firstCDATASection");
         data = cdataN.getData();
-        assertEquals("data1", "This is a CDATASection with EntityReference number 2 &ent2;", data);
+        assertEquals("This is a CDATASection with EntityReference number 2 &ent2;", data, "data1");
         cdataN = (CDATASection) childNodes.item(3);
-        assertNotNull("secondCDATASection", cdataN);
+        assertNotNull(cdataN, "secondCDATASection");
         data = cdataN.getData();
-        assertEquals("data3", "This is an adjacent CDATASection with a reference to a tab &tab;", data);
+        assertEquals("This is an adjacent CDATASection with a reference to a tab &tab;", data, "data3");
     }
 }
 

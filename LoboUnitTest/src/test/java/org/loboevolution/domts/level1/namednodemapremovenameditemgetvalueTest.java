@@ -27,13 +27,13 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.*;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -74,12 +74,12 @@ public class namednodemapremovenameditemgetvalueTest extends LoboUnitTest {
         elementList = doc.getElementsByTagName("address");
         testEmployee = (Element) elementList.item(2);
         attributes = testEmployee.getAttributes();
-        assertNotNull("attributesNotNull", attributes);
+        assertNotNull(attributes, "attributesNotNull");
         removedNode = attributes.removeNamedItem("street");
         streetAttr = (Attr) attributes.getNamedItem("street");
-        assertNotNull("streetAttrNotNull", streetAttr);
+        assertNotNull(streetAttr, "streetAttrNotNull");
         value = streetAttr.getValue();
-        assertEquals("namednodemapRemoveNamedItemGetValueAssert", "Yes", value);
+        assertEquals("Yes", value, "namednodemapRemoveNamedItemGetValueAssert");
     }
 }
 

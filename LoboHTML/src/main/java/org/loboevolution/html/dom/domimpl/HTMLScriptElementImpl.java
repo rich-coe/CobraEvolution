@@ -28,6 +28,8 @@
  */
 package org.loboevolution.html.dom.domimpl;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.loboevolution.common.Strings;
 import org.loboevolution.gui.HtmlRendererContext;
 import org.loboevolution.html.dom.HTMLScriptElement;
@@ -45,7 +47,6 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.RhinoException;
 import org.mozilla.javascript.Scriptable;
 import org.loboevolution.html.dom.UserDataHandler;
-import sun.net.www.protocol.file.FileURLConnection;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -55,18 +56,15 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.MissingResourceException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * <p>HTMLScriptElementImpl class.</p>
  */
+@Slf4j
 public class HTMLScriptElementImpl extends HTMLElementImpl implements HTMLScriptElement {
-	private static final Logger logger = Logger.getLogger(HTMLScriptElementImpl.class.getName());
-
 	private boolean defer;
 
 	private String text;
@@ -159,7 +157,7 @@ public class HTMLScriptElementImpl extends HTMLElementImpl implements HTMLScript
 	/**
 	 * <p>processScript.</p>
 	 */
-	protected final void processScript() {
+	private final void processScript() {
 		final UserAgentContext bcontext = getUserAgentContext();
 		if (bcontext == null) {
 			throw new IllegalStateException("No user agent context.");
@@ -204,13 +202,9 @@ public class HTMLScriptElementImpl extends HTMLElementImpl implements HTMLScript
 							info.setHttpResponse(400);
 						}
 
-						logger.log(Level.SEVERE, "More than " + connection.getConnectTimeout() + " elapsed.");
+						log.error("More than " + connection.getConnectTimeout() + " elapsed.");
 				    } catch (Exception e) {
-						if (e instanceof MissingResourceException) {
-							logger.log(Level.INFO, e.getMessage());
-						} else{
-							logger.log(Level.SEVERE, e.getMessage(), e);
-						}
+                                                log.error(e.getMessage(), e);
 					} finally {
 						Instant finish = Instant.now();
 						long timeElapsed = Duration.between(start, finish).toMillis();
@@ -236,11 +230,9 @@ public class HTMLScriptElementImpl extends HTMLElementImpl implements HTMLScript
 				}
 			} catch (final RhinoException ecmaError) {
 				final String error = ecmaError.sourceName() + ":" + ecmaError.lineNumber() + ": " + ecmaError.getMessage();
-				logger.log(Level.WARNING, "Javascript error at " + error, ecmaError.getMessage());
-			} catch (MissingResourceException mre) {
-				logger.log(Level.WARNING, mre.getMessage());
+				log.warn("Javascript error at " + error, ecmaError.getMessage());
 			} catch (final Throwable err) {
-				logger.log(Level.WARNING, "Unable to evaluate Javascript code", err);
+				log.warn("Unable to evaluate Javascript code", err);
 			} finally {
 				Context.exit();
 			}
@@ -293,8 +285,7 @@ public class HTMLScriptElementImpl extends HTMLElementImpl implements HTMLScript
 	}
 	@Override
 	public String getIntegrity() {
-		// TODO Auto-generated method stub
-		return null;
+		return getAttribute("integrity");
 	}
 
 	@Override

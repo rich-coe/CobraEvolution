@@ -27,13 +27,13 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.*;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -78,9 +78,9 @@ public class hc_namednodemapsetnameditemreturnvalueTest extends LoboUnitTest {
         newAttribute = doc.createAttribute("class");
         attributes = testAddress.getAttributes();
         newNode = attributes.setNamedItem(newAttribute);
-        assertNotNull("previousAttrNotNull", newNode);
+        assertNotNull(newNode, "previousAttrNotNull");
         attrValue = newNode.getNodeValue();
-        assertEquals("previousAttrValue", "No", attrValue);
+        assertEquals("No", attrValue, "previousAttrValue");
     }
 }
 

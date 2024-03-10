@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DOMImplementation;
@@ -35,8 +35,8 @@ import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.Element;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 /**
@@ -74,10 +74,10 @@ public class nodegetownerdocument02Test extends LoboUnitTest {
         docType = domImpl.createDocumentType("mydoc", nullNS, nullNS);
         newDoc = domImpl.createDocument("http://www.w3.org/DOM/Test", "mydoc", docType);
         ownerDocDoc = newDoc.getOwnerDocument();
-        assertNull("nodegetownerdocument02_1", ownerDocDoc);
+        assertNull(ownerDocDoc, "nodegetownerdocument02_1");
         newElem = newDoc.createElementNS("http://www.w3.org/DOM/Test", "myelem");
         ownerDocElem = newElem.getOwnerDocument();
-        assertNotNull("nodegetownerdocument02_2", ownerDocElem);
+        assertNotNull(ownerDocElem, "nodegetownerdocument02_2");
     }
 }
 

@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Node;
 import org.loboevolution.html.node.NodeList;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -75,9 +75,9 @@ public class hc_noderemovechildgetnodenameTest extends LoboUnitTest {
         oldChild = childList.item(0);
         oldName = oldChild.getNodeName();
         removedChild = employeeNode.removeChild(oldChild);
-        assertNotNull("notnull", removedChild);
+        assertNotNull(removedChild, "notnull");
         childName = removedChild.getNodeName();
-        assertEquals("nodeName", oldName, childName);
+        assertEquals(oldName, childName, "nodeName");
     }
 }
 

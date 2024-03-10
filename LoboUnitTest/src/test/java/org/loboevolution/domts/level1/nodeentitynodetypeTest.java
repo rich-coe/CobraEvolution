@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.NamedNodeMap;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -61,13 +61,13 @@ public class nodeentitynodetypeTest extends LoboUnitTest {
         int nodeType;
         doc = sampleXmlFile("staff.xml");
         docType = doc.getDoctype();
-        assertNotNull("docTypeNotNull", docType);
+        assertNotNull(docType, "docTypeNotNull");
         entities = docType.getEntities();
-        assertNotNull("entitiesNotNull", entities);
+        assertNotNull(entities, "entitiesNotNull");
         entityNode = entities.getNamedItem("ent1");
-        assertNotNull("ent1NotNull", entityNode);
+        assertNotNull(entityNode, "ent1NotNull");
         nodeType = entityNode.getNodeType();
-        assertEquals("entityNodeType", 6, nodeType);
+        assertEquals(6, nodeType, "entityNodeType");
     }
 }
 

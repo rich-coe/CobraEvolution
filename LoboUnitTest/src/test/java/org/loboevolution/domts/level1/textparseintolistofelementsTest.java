@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Node;
 import org.loboevolution.html.node.NodeList;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -90,7 +90,7 @@ public class textparseintolistofelementsTest extends LoboUnitTest {
 
             if ((value == null)) {
                 grandChild = child.getFirstChild();
-                assertNotNull("grandChildNotNull", grandChild);
+                assertNotNull(grandChild, "grandChildNotNull");
                 value = grandChild.getNodeValue();
                 result.add(value);
             } else {
@@ -100,9 +100,9 @@ public class textparseintolistofelementsTest extends LoboUnitTest {
         }
 
         if (length == 4) {
-            assertEquals("assertEqNormal", expectedNormal, result);
+            assertEquals(expectedNormal, result, "assertEqNormal");
         } else {
-            assertEquals("assertEqCoalescing", expectedExpanded, result);
+            assertEquals(expectedExpanded, result, "assertEqCoalescing");
         }
 
     }

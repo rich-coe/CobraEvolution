@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
@@ -35,7 +35,7 @@ import org.loboevolution.html.node.DOMImplementation;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -73,7 +73,7 @@ public class documentgetelementsbytagnameNS01Test extends LoboUnitTest {
         domImpl = doc.getImplementation();
         newDoc = domImpl.createDocument(nullNS, "root", docType);
         childList = newDoc.getElementsByTagNameNS("*", "*");
-        assertEquals("documentgetelementsbytagnameNS01", 1, childList.getLength());
+        assertEquals(1, childList.getLength(), "documentgetelementsbytagnameNS01");
     }
 }
 

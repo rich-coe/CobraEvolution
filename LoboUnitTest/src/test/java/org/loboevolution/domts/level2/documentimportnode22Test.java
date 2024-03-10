@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.Notation;
 import org.loboevolution.html.node.Document;
@@ -36,7 +36,7 @@ import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.NamedNodeMap;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -86,7 +86,7 @@ public class documentimportnode22Test extends LoboUnitTest {
         docType = doc.getDoctype();
         docImp = domImpl.createDocument("http://www.w3.org/DOM/Test", "a:b", docTypeNull);
         nodeMap = docType.getNotations();
-        assertNotNull("notationsNotNull", nodeMap);
+        assertNotNull(nodeMap, "notationsNotNull");
         notation1 = (Notation) nodeMap.getNamedItem("notation1");
         notation2 = (Notation) nodeMap.getNamedItem("notation2");
         doc.importNode(notation1, true);
@@ -102,14 +102,14 @@ public class documentimportnode22Test extends LoboUnitTest {
         systemId2 = notation2.getSystemId();
         systemId2Imp = notation2.getSystemId();
         systemId2NewImp = notation2.getSystemId();
-        assertEquals("documentimportnode22_N1PID", publicId1, publicId1Imp);
-        assertEquals("documentimportnode22_N1NPID", publicId1, publicId1NewImp);
-        assertNull("documentimportnode22_N1SID", systemId1Imp);
-        assertNull("documentimportnode22_N1NSID", systemId1NewImp);
-        assertEquals("documentimportnode22_N2SID", systemId2, systemId2Imp);
-        assertEquals("documentimportnode22_N2NSID", systemId2, systemId2NewImp);
-        assertNull("documentimportnode22_N2PID", publicId2Imp);
-        assertNull("documentimportnode22_N2NPID", publicId2Imp);
+        assertEquals(publicId1, publicId1Imp, "documentimportnode22_N1PID");
+        assertEquals(publicId1, publicId1NewImp, "documentimportnode22_N1NPID");
+        assertNull(systemId1Imp, "documentimportnode22_N1SID");
+        assertNull(systemId1NewImp, "documentimportnode22_N1NSID");
+        assertEquals(systemId2, systemId2Imp, "documentimportnode22_N2SID");
+        assertEquals(systemId2, systemId2NewImp, "documentimportnode22_N2NSID");
+        assertNull(publicId2Imp, "documentimportnode22_N2PID");
+        assertNull(publicId2Imp, "documentimportnode22_N2NPID");
     }
 }
 

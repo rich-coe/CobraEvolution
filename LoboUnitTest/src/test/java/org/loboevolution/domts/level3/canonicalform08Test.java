@@ -27,7 +27,7 @@
 package org.loboevolution.domts.level3;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.nodeimpl.DOMErrorMonitor;
 import org.loboevolution.html.node.DOMConfiguration;
@@ -35,7 +35,7 @@ import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Node;
 import org.loboevolution.html.node.ProcessingInstruction;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -68,53 +68,53 @@ public class canonicalform08Test extends LoboUnitTest {
             /*DOMErrorMonitor */
             domConfig.setParameter("error-handler", errorMonitor);
             doc.normalizeDocument();
-            assertTrue("normalizeError", errorMonitor.assertLowerSeverity(2));
+            assertTrue(errorMonitor.assertLowerSeverity(2), "normalizeError");
             node = doc.getFirstChild();
             nodeType = node.getNodeType();
-            assertEquals("PIisFirstChild", 7, nodeType);
+            assertEquals(7, nodeType, "PIisFirstChild");
             nodeValue = ((ProcessingInstruction) /*Node */node).getData();
             length = nodeValue.length();
-            assertEquals("piDataLength", 36, length);
+            assertEquals(36, length, "piDataLength");
             node = node.getNextSibling();
             nodeType = node.getNodeType();
-            assertEquals("TextisSecondChild", 3, nodeType);
+            assertEquals(3, nodeType, "TextisSecondChild");
             nodeValue = node.getNodeValue();
             length = nodeValue.length();
-            assertEquals("secondChildLength", 1, length);
+            assertEquals(1, length, "secondChildLength");
             node = node.getNextSibling();
             nodeType = node.getNodeType();
-            assertEquals("ElementisThirdChild", 1, nodeType);
+            assertEquals(1, nodeType, "ElementisThirdChild");
             node = node.getNextSibling();
             nodeType = node.getNodeType();
-            assertEquals("TextisFourthChild", 3, nodeType);
+            assertEquals(3, nodeType, "TextisFourthChild");
             nodeValue = node.getNodeValue();
             length = nodeValue.length();
-            assertEquals("fourthChildLength", 1, length);
+            assertEquals(1, length, "fourthChildLength");
             node = node.getNextSibling();
             nodeType = node.getNodeType();
-            assertEquals("PIisFifthChild", 7, nodeType);
+            assertEquals(7, nodeType, "PIisFifthChild");
             nodeValue = ((ProcessingInstruction) /*Node */node).getData();
-            assertEquals("trailingPIData", "", nodeValue);
+            assertEquals("", nodeValue, "trailingPIData");
             node = node.getNextSibling();
             nodeType = node.getNodeType();
-            assertEquals("TextisSixthChild", 3, nodeType);
+            assertEquals(3, nodeType, "TextisSixthChild");
             nodeValue = node.getNodeValue();
             length = nodeValue.length();
-            assertEquals("sixthChildLength", 1, length);
+            assertEquals(1, length, "sixthChildLength");
             node = node.getNextSibling();
             nodeType = node.getNodeType();
-            assertEquals("CommentisSeventhChild", 8, nodeType);
+            assertEquals(8, nodeType, "CommentisSeventhChild");
             node = node.getNextSibling();
             nodeType = node.getNodeType();
-            assertEquals("TextisEighthChild", 3, nodeType);
+            assertEquals(3, nodeType, "TextisEighthChild");
             nodeValue = node.getNodeValue();
             length = nodeValue.length();
-            assertEquals("eighthChildLength", 1, length);
+            assertEquals(1, length, "eighthChildLength");
             node = node.getNextSibling();
             nodeType = node.getNodeType();
-            assertEquals("CommentisNinthChild", 8, nodeType);
+            assertEquals(8, nodeType, "CommentisNinthChild");
             node = node.getNextSibling();
-            assertNull("TenthIsNull", node);
+            assertNull(node, "TenthIsNull");
         }
     }
 }

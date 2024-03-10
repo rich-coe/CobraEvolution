@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DOMImplementation;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 /**
@@ -87,9 +87,9 @@ public class domimplementationcreatedocumenttype02Test extends LoboUnitTest {
         for (int indexN10077 = 0; indexN10077 < qualifiedNames.size(); indexN10077++) {
             qualifiedName = (String) qualifiedNames.get(indexN10077);
             newDocType = domImpl.createDocumentType(qualifiedName, publicId, systemId);
-            assertNotNull("domimplementationcreatedocumenttype02_newDocType", newDocType);
+            assertNotNull(newDocType, "domimplementationcreatedocumenttype02_newDocType");
             ownerDocument = newDocType.getOwnerDocument();
-            assertNull("domimplementationcreatedocumenttype02_ownerDocument", ownerDocument);
+            assertNull(ownerDocument, "domimplementationcreatedocumenttype02_ownerDocument");
         }
     }
 }

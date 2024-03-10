@@ -27,14 +27,14 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.EntityReference;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -72,14 +72,14 @@ public class importNode11Test extends LoboUnitTest {
         doc = sampleXmlFile("staff.xml");
         aNewDoc = sampleXmlFile("staff.xml");
         entRef = aNewDoc.createEntityReference("ent3");
-        assertNotNull("createdEntRefNotNull", entRef);
+        assertNotNull(entRef, "createdEntRefNotNull");
         aNode = doc.importNode(entRef, true);
         name = aNode.getNodeName();
-        assertEquals("entityName", "ent3", name);
+        assertEquals("ent3", name, "entityName");
         child = aNode.getFirstChild();
-        assertNotNull("child", child);
+        assertNotNull(child, "child");
         childValue = child.getNodeValue();
-        assertEquals("childValue", "Texas", childValue);
+        assertEquals("Texas", childValue, "childValue");
     }
 }
 

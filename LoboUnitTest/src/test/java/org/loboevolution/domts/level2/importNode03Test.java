@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Comment;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -74,12 +74,12 @@ public class importNode03Test extends LoboUnitTest {
         comment = aNewDoc.createComment("this is a comment");
         aNode = doc.importNode(comment, false);
         ownerDocument = aNode.getOwnerDocument();
-        assertNotNull("ownerDocumentNotNull", ownerDocument);
+        assertNotNull(ownerDocument, "ownerDocumentNotNull");
         docType = ownerDocument.getDoctype();
         system = docType.getSystemId();
-        assertEquals("systemId", "staffNS.dtd", system);
+        assertEquals("staffNS.dtd", system, "systemId");
         value = aNode.getNodeValue();
-        assertEquals("nodeValue", "this is a comment", value);
+        assertEquals("this is a comment", value, "nodeValue");
     }
 }
 

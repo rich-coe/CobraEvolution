@@ -27,13 +27,13 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.*;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -68,17 +68,17 @@ public class hc_attrreplacechild1Test extends LoboUnitTest {
         titleAttr = (Attr) attributes.getNamedItem("title");
         textNode = doc.createTextNode("terday");
         firstChild = titleAttr.getFirstChild();
-        assertNotNull("attrChildNotNull", firstChild);
+        assertNotNull(firstChild, "attrChildNotNull");
         retval = titleAttr.replaceChild(textNode, firstChild);
         value = titleAttr.getValue();
-        assertEquals("attrValue", "terday", value);
+        assertEquals("terday", value, "attrValue");
         value = titleAttr.getNodeValue();
-        assertEquals("attrNodeValue", "terday", value);
+        assertEquals("terday", value, "attrNodeValue");
         value = retval.getNodeValue();
-        assertEquals("retvalValue", "Yes", value);
+        assertEquals("Yes", value, "retvalValue");
         firstChild = titleAttr.getFirstChild();
         value = firstChild.getNodeValue();
-        assertEquals("firstChildValue", "terday", value);
+        assertEquals("terday", value, "firstChildValue");
     }
 }
 

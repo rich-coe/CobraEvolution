@@ -37,8 +37,8 @@ import org.loboevolution.html.node.js.Window;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * <p>LoboUnitTest class.</p>
@@ -184,8 +184,7 @@ public class LoboUnitTest extends LoboWebDriver {
 
         if (isAbsolute != null) {
             assertEquals(
-                    assertID,
-                    isAbsolute.booleanValue(),
+                    isAbsolute,
                     actualPath.startsWith("/") || actualPath.startsWith("file:/"));
         }
     }

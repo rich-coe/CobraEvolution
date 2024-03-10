@@ -28,7 +28,7 @@ package org.loboevolution.domts.level3;
 
 
 import lombok.SneakyThrows;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.gui.LocalHtmlRendererConfig;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.nodeimpl.DOMImplementationImpl;
@@ -36,7 +36,7 @@ import org.loboevolution.html.dom.nodeimpl.bootstrap.DOMImplementationRegistry;
 import org.loboevolution.html.node.DOMImplementation;
 import org.loboevolution.http.UserAgentContext;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -57,16 +57,16 @@ public class domimplementationregistry08Test extends LoboUnitTest {
         String nullVersion = null;
 
         DOMImplementationRegistry domImplRegistry = DOMImplementationRegistry.newInstance();
-        assertNotNull("domImplRegistryNotNull", domImplRegistry);
+        assertNotNull(domImplRegistry, "domImplRegistryNotNull");
         domImpl = domImplRegistry.getDOMImplementation("SVG");
 
         if ((domImpl == null)) {
             DOMImplementationImpl baseImpl = new DOMImplementationImpl(new UserAgentContext(new LocalHtmlRendererConfig(), true));
             hasFeature = baseImpl.hasFeature("SVG", null);
-            assertFalse("baseImplSupportsSVG", hasFeature);
+            assertFalse(hasFeature, "baseImplSupportsSVG");
         } else {
             hasFeature = domImpl.hasFeature("SVG", nullVersion);
-            assertTrue("hasCore", hasFeature);
+            assertTrue(hasFeature, "hasCore");
         }
 
     }

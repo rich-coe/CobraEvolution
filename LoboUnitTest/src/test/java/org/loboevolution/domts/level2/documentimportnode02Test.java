@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Attr;
@@ -35,8 +35,8 @@ import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 /**
@@ -83,10 +83,10 @@ public class documentimportnode02Test extends LoboUnitTest {
         nodeType = importedAttr.getNodeType();
         nodeValue = importedAttr.getNodeValue();
         attrsParent = importedAttr.getParentNode();
-        assertNull("documentimportnode02_parentNull", attrsParent);
-        assertEquals("documentimportnode02_nodeName", "zone", nodeName);
-        assertEquals("documentimportnode02_nodeType", 2, nodeType);
-        assertEquals("documentimportnode02_nodeValue", "CANADA", nodeValue);
+        assertNull(attrsParent, "documentimportnode02_parentNull");
+        assertEquals("zone", nodeName, "documentimportnode02_nodeName");
+        assertEquals(2, nodeType, "documentimportnode02_nodeType");
+        assertEquals("CANADA", nodeValue, "documentimportnode02_nodeValue");
     }
 }
 

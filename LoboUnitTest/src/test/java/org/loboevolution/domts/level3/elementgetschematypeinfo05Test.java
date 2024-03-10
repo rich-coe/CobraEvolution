@@ -26,14 +26,14 @@
 
 package org.loboevolution.domts.level3;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 import org.loboevolution.html.node.TypeInfo;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The getSchemaTypeInfo method retrieves the type information associated with this element.
@@ -61,7 +61,7 @@ public class elementgetschematypeinfo05Test extends LoboUnitTest {
         elemTypeInfo = acElem.getSchemaTypeInfo();
         typeName = elemTypeInfo.getTypeName();
         typeNamespace = elemTypeInfo.getTypeNamespace();
-        assertEquals("typeNameString", "string", typeName);
-        assertEquals("typeNsXSD", "http://www.w3.org/2001/XMLSchema", typeNamespace);
+        assertEquals("string", typeName, "typeNameString");
+        assertEquals("http://www.w3.org/2001/XMLSchema", typeNamespace, "typeNsXSD");
     }
 }

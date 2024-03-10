@@ -27,12 +27,12 @@
 package org.loboevolution.domts.level3;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -69,7 +69,7 @@ public class documentrenamenode09Test extends LoboUnitTest {
         adopted = newDoc.adoptNode(attr);
         renamedNode = newDoc.renameNode(attr, "http://www.w3.org/2000/xmlns/", "xmlns:xmlns");
         attrNodeName = renamedNode.getNodeName();
-        assertEquals("documentrenamenode09_1", "xmlns:xmlns", attrNodeName);
+        assertEquals("xmlns:xmlns", attrNodeName, "documentrenamenode09_1");
     }
 }
 

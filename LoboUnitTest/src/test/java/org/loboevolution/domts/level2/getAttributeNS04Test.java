@@ -27,14 +27,14 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -70,10 +70,10 @@ public class getAttributeNS04Test extends LoboUnitTest {
         doc.createAttributeNS(namespaceURI, qualifiedName);
         elementList = doc.getElementsByTagName("address");
         testAddr = (Element) elementList.item(0);
-        assertNotNull("empAddrNotNull", testAddr);
+        assertNotNull(testAddr, "empAddrNotNull");
         testAddr.setAttributeNS(namespaceURI, qualifiedName, "NewValue");
         attrValue = testAddr.getAttributeNS(namespaceURI, localName);
-        assertEquals("throw_Equals", "NewValue", attrValue);
+        assertEquals("NewValue", attrValue, "throw_Equals");
     }
 }
 

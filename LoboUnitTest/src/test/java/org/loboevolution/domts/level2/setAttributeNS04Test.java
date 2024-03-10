@@ -27,7 +27,7 @@
 
 package org.loboevolution.domts.level2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.HTMLCollection;
 import org.loboevolution.html.node.Attr;
@@ -35,8 +35,8 @@ import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -76,17 +76,17 @@ public class setAttributeNS04Test extends LoboUnitTest {
         doc = sampleXmlFile("staffNS.xml");
         elementList = doc.getElementsByTagName("address");
         testAddr = elementList.item(0);
-        assertNotNull("empAddrNotNull", testAddr);
+        assertNotNull(testAddr, "empAddrNotNull");
         ((Element) testAddr).setAttribute( "newprefix:zone", "newValue");
         addrAttr = ((Element) testAddr).getAttributeNode( "zone");
         resultAttr = ((Element) testAddr).getAttribute( "zone");
-        assertEquals("attrValue", "newValue", resultAttr);
+        assertEquals("newValue", resultAttr, "attrValue");
         resultNamespaceURI = addrAttr.getNamespaceURI();
-        assertEquals("nsuri", "http://www.nist.gov", resultNamespaceURI);
+        assertEquals("http://www.nist.gov", resultNamespaceURI, "nsuri");
         resultLocalName = addrAttr.getLocalName();
-        assertEquals("lname", "zone", resultLocalName);
+        assertEquals("zone", resultLocalName, "lname");
         resultPrefix = addrAttr.getPrefix();
-        assertEquals("prefix", "newprefix", resultPrefix);
+        assertEquals("newprefix", resultPrefix, "prefix");
     }
 }
 

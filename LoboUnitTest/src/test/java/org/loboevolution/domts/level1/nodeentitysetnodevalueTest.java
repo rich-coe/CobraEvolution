@@ -28,14 +28,14 @@
 package org.loboevolution.domts.level1;
 
 import org.htmlunit.cssparser.dom.DOMException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.NamedNodeMap;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -61,21 +61,21 @@ public class nodeentitysetnodevalueTest extends LoboUnitTest {
         String entityValue;
         doc = sampleXmlFile("staff.xml");
         docType = doc.getDoctype();
-        assertNotNull("docTypeNotNull", docType);
+        assertNotNull(docType, "docTypeNotNull");
         entities = docType.getEntities();
-        assertNotNull("entitiesNotNull", entities);
+        assertNotNull(entities, "entitiesNotNull");
         entityNode = entities.getNamedItem("ent1");
-        assertNotNull("ent1NotNull", entityNode);
+        assertNotNull(entityNode, "ent1NotNull");
         boolean success = false;
         try {
             entityNode.setNodeValue("This should have no effect");
         } catch (DOMException ex) {
             success = (ex.getCode() == DOMException.INVALID_MODIFICATION_ERR);
         }
-        assertTrue("throw_INVALID_MODIFICATION_ERR", success);
+        assertTrue(success, "throw_INVALID_MODIFICATION_ERR");
 
         entityValue = entityNode.getNodeValue();
-        assertNull("nodeValueNull", entityValue);
+        assertNull(entityValue, "nodeValueNull");
     }
 }
 

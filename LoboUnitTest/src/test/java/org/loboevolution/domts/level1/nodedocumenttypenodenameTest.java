@@ -27,13 +27,13 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -58,9 +58,9 @@ public class nodedocumenttypenodenameTest extends LoboUnitTest {
         String documentTypeName;
         doc = sampleXmlFile("staff.xml");
         docType = doc.getDoctype();
-        assertNotNull("docTypeNotNull", docType);
+        assertNotNull(docType, "docTypeNotNull");
         documentTypeName = docType.getNodeName();
-        assertEquals("documentName", "staff", documentTypeName);
+        assertEquals("staff", documentTypeName, "documentName");
 
     }
 }

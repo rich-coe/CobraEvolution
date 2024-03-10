@@ -27,15 +27,15 @@
 
 package org.loboevolution.domts.level1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.Element;
 import org.loboevolution.html.node.NamedNodeMap;
 import org.loboevolution.html.node.Node;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -73,11 +73,11 @@ public class documentcreateelementdefaultattrTest extends LoboUnitTest {
         newElement = doc.createElement("address");
         defaultAttr = newElement.getAttributes();
         child = defaultAttr.item(0);
-        assertNotNull("defaultAttrNotNull", child);
+        assertNotNull(child, "defaultAttrNotNull");
         name = child.getNodeName();
-        assertEquals("attrName", "street", name);
+        assertEquals("street", name, "attrName");
         value = child.getNodeValue();
-        assertEquals("attrValue", "Yes", value);
+        assertEquals("Yes", value, "attrValue");
     }
 }
 

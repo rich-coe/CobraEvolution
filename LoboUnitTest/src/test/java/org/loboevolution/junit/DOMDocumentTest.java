@@ -27,8 +27,8 @@
 package org.loboevolution.junit;
 
 import org.htmlunit.cssparser.dom.DOMException;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.gui.LocalHtmlRendererConfig;
 import org.loboevolution.html.dom.domimpl.HTMLCollectionImpl;
@@ -41,13 +41,13 @@ import org.loboevolution.http.UserAgentContext;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DOMDocumentTest extends LoboUnitTest {
 
     private static DOMImplementationImpl domImpl;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() {
         UserAgentContext context = new UserAgentContext(new LocalHtmlRendererConfig(), true);
         context.setUserAgentEnabled(false);
@@ -57,10 +57,10 @@ public class DOMDocumentTest extends LoboUnitTest {
     @Test
     public void testCreateDocument() {
         Document document = domImpl.createDocument(null, null, null);
-        assertEquals("BackCompat", document.getCompatMode());
+        assertEquals(document.getCompatMode(), "BackCompat");
         DocumentType doctype = domImpl.createDocumentType("HTML", null, null);
         document = domImpl.createDocument(null, null, doctype);
-        assertEquals("CSS1Compat", document.getCompatMode());
+        assertEquals(document.getCompatMode(), "CSS1Compat");
     }
 
     @Test
@@ -73,11 +73,11 @@ public class DOMDocumentTest extends LoboUnitTest {
     public void testText() {
         Document document = domImpl.createDocument(Document.XML_NAMESPACE_URI, null, null);
         Text c = document.createTextNode("A text node");
-        assertEquals("A text node", c.getData());
-        assertEquals("A text node", c.getNodeValue());
+        assertEquals(c.getData(), "A text node");
+        assertEquals(c.getNodeValue(), "A text node");
         Text d = c.splitText(7);
-        assertEquals("A text ", c.getData());
-        assertEquals("node", d.getData());
+        assertEquals(c.getData(), "A text ");
+        assertEquals(d.getData(), "node");
         try {
             c.splitText(100);
             fail("Must throw an exception");
@@ -96,29 +96,29 @@ public class DOMDocumentTest extends LoboUnitTest {
         elm.appendChild(c);
         assertNull(c.getNextSibling());
         d = c.splitText(7);
-        assertEquals("A text ", c.getData());
-        assertEquals("node", d.getData());
+        assertEquals(c.getData(), "A text ");
+        assertEquals(d.getData(), "node");
         assertEquals(2, elm.getChildNodes().getLength());
         assertSame(d, c.getNextSibling());
 
         c = document.createTextNode("A text node<");
-        assertEquals("A text node<", c.getData());
-        assertEquals("A text node<", c.getNodeValue());
+        assertEquals(c.getData(), "A text node<");
+        assertEquals(c.getNodeValue(), "A text node<");
         c.appendData("foo>");
-        assertEquals("A text node<foo>", c.getData());
-        assertEquals("A text node<foo>", c.getNodeValue());
+        assertEquals(c.getData(), "A text node<foo>");
+        assertEquals(c.getNodeValue(), "A text node<foo>");
 
         c.deleteData(11, 20);
-        assertEquals("A text node", c.getData());
-        assertEquals("A text node", c.getNodeValue());
+        assertEquals(c.getData(), "A text node");
+        assertEquals(c.getNodeValue(), "A text node");
 
         c.replaceData(0, 1, "My");
-        assertEquals("My text node", c.getData());
-        assertEquals("My text node", c.getNodeValue());
+        assertEquals(c.getData(), "My text node");
+        assertEquals(c.getNodeValue(), "My text node");
 
         c.deleteData(0, 3);
-        assertEquals("text node", c.getData());
-        assertEquals("text node", c.getNodeValue());
+        assertEquals(c.getData(), "text node");
+        assertEquals(c.getNodeValue(), "text node");
 
         try {
             document.createTextNode(null);
@@ -154,18 +154,18 @@ public class DOMDocumentTest extends LoboUnitTest {
         }
 
         c.insertData(0, "The ");
-        assertEquals("The text node", c.getData());
-        assertEquals("The text node", c.getNodeValue());
+        assertEquals(c.getData(), "The text node");
+        assertEquals(c.getNodeValue(), "The text node");
 
         c.insertData(13, " is now larger");
-        assertEquals("The text node is now larger", c.getData());
+        assertEquals(c.getData(), "The text node is now larger");
 
         c.deleteData(9, 5);
-        assertEquals("The text is now larger", c.getData());
+        assertEquals(c.getData(), "The text is now larger");
         c.insertData(9, "node ");
-        assertEquals("The text node is now larger", c.getData());
+        assertEquals(c.getData(), "The text node is now larger");
         c.deleteData(26, 200);
-        assertEquals("The text node is now large", c.getData());
+        assertEquals(c.getData(), "The text node is now large");
 
         try {
             c.insertData(-1, "foo");
@@ -192,13 +192,13 @@ public class DOMDocumentTest extends LoboUnitTest {
     public void testCharacterData() {
         Document document = domImpl.createDocument(Document.XML_NAMESPACE_URI, null, null);
         CDATASection c = document.createCDATASection("A CDATA section");
-        assertEquals("A CDATA section", c.getData());
-        assertEquals("A CDATA section", c.getNodeValue());
+        assertEquals(c.getData(), "A CDATA section");
+        assertEquals(c.getNodeValue(), "A CDATA section");
 
         assertEquals(15, c.getLength());
         c = document.createCDATASection("A CDATA section<");
-        assertEquals("A CDATA section<", c.getData());
-        assertEquals("A CDATA section<", c.getNodeValue());
+        assertEquals(c.getData(), "A CDATA section<");
+        assertEquals(c.getNodeValue(), "A CDATA section<");
 
         Node clone = c.cloneNode(false);
         assertNotNull(clone);
@@ -243,8 +243,8 @@ public class DOMDocumentTest extends LoboUnitTest {
         } catch (DOMException e) {
             assertEquals(DOMException.INDEX_SIZE_ERR, e.getCode());
         }
-        assertEquals("A ", c.substringData(0, 2));
-        assertEquals("A CDATA section<", c.substringData(0, 200));
+        assertEquals(c.substringData(0, 2), "A ");
+        assertEquals(c.substringData(0, 200), "A CDATA section<");
         try {
             c.replaceData(67, 1, "foo");
             fail("Must throw exception");
@@ -253,8 +253,8 @@ public class DOMDocumentTest extends LoboUnitTest {
         }
         c.replaceData(15, 1, "");
         c.replaceData(0, 1, "My");
-        assertEquals("My CDATA section", c.getData());
-        assertEquals("My CDATA section", c.getWholeText());
+        assertEquals(c.getData(), "My CDATA section");
+        assertEquals(c.getWholeText(), "My CDATA section");
         try {
             c.appendChild(document.createComment(" hi "));
             fail("Must throw exception");
@@ -293,15 +293,15 @@ public class DOMDocumentTest extends LoboUnitTest {
         Document document = domImpl.createDocument(Document.XML_NAMESPACE_URI, null, null);
         Element element = document.createElementNS(null, "element");
         element.setAttribute("Id", "myId");
-        assertEquals("myId", element.getAttribute("Id"));
-        assertEquals("myId", element.getId());
+        assertEquals(element.getAttribute("Id"), "myId");
+        assertEquals(element.getId(), "myId");
         assertTrue(element.getAttributeNode("Id").isId());
         element.setAttribute("foo", "bar");
-        assertEquals("bar", element.getAttribute("foo"));
+        assertEquals(element.getAttribute("foo"), "bar");
         assertFalse(element.getAttributeNode("foo").isId());
         document.appendChild(element);
         assertSame(element, document.getDocumentElement());
-        assertEquals("[object HTMLElement]", element.toString());
+        assertEquals(element.toString(), "[object HTMLElement]");
     }
 
     @Test
@@ -436,18 +436,18 @@ public class DOMDocumentTest extends LoboUnitTest {
         Document document = domImpl.createDocument(Document.XML_NAMESPACE_URI, null, null);
         Comment comment = document.createComment("My comment");
         assertNotNull(comment);
-        assertEquals("My comment", comment.getData());
-        assertEquals("[object Comment]", comment.toString());
+        assertEquals(comment.getData(), "My comment");
+        assertEquals(comment.toString(), "[object Comment]");
 
         comment = document.createComment("<--");
         assertNotNull(comment);
-        assertEquals("<--", comment.getData());
-        assertEquals("[object Comment]", comment.toString());
+        assertEquals(comment.getData(), "<--");
+        assertEquals(comment.toString(), "[object Comment]");
 
         comment = document.createComment("-->");
         assertNotNull(comment);
-        assertEquals("-->", comment.getData());
-        assertEquals("[object Comment]", comment.toString());
+        assertEquals(comment.getData(), "-->");
+        assertEquals(comment.toString(), "[object Comment]");
 
         try {
             document.createComment(null);
@@ -481,7 +481,7 @@ public class DOMDocumentTest extends LoboUnitTest {
         span.appendChild(document.createTextNode("foo"));
         p.appendChild(span);
         df.isEqualNode(df.cloneNode(true));
-        assertEquals("[object DocumentFragment]", df.toString());
+        assertEquals(df.toString(), "[object DocumentFragment]");
     }
 
     @Test
@@ -498,11 +498,11 @@ public class DOMDocumentTest extends LoboUnitTest {
         assertNull(attr.getLastChild());
         assertEquals(0, attr.getChildNodes().getLength());
         assertNull(attr.getNamespaceURI());
-        assertEquals("lang", attr.getName());
-        assertEquals("en", attr.getValue());
-        assertEquals("lang", attr.getNodeName());
-        assertEquals("en", attr.getNodeValue());
-        assertEquals("[object Attr]", attr.toString());
+        assertEquals(attr.getName(), "lang");
+        assertEquals(attr.getValue(), "en");
+        assertEquals(attr.getNodeName(), "lang");
+        assertEquals(attr.getNodeValue(), "en");
+        assertEquals(attr.toString(), "[object Attr]");
         docElm.setAttributeNodeNS(attr);
 
         try {
@@ -551,7 +551,7 @@ public class DOMDocumentTest extends LoboUnitTest {
 
         attr = document.createAttribute("foo");
         attr.setValue("foo\u00a0bar&\"");
-        assertEquals("[object Attr]", attr.toString());
+        assertEquals(attr.toString(), "[object Attr]");
     }
 
     @Test
@@ -563,12 +563,12 @@ public class DOMDocumentTest extends LoboUnitTest {
         assertEquals(0, attr.getChildNodes().getLength());
         assertNull(attr.getFirstChild());
         assertNull(attr.getLastChild());
-        assertEquals("http://www.w3.org/2000/svg", attr.getNamespaceURI());
-        assertEquals("version", attr.getName());
-        assertEquals("version", attr.getNodeName());
-        assertEquals("1.1", attr.getValue());
-        assertEquals("1.1", attr.getNodeValue());
-        assertEquals("[object Attr]", attr.toString());
+        assertEquals(attr.getNamespaceURI(), "http://www.w3.org/2000/svg");
+        assertEquals(attr.getName(), "version");
+        assertEquals(attr.getNodeName(), "version");
+        assertEquals(attr.getValue(), "1.1");
+        assertEquals(attr.getNodeValue(), "1.1");
+        assertEquals(attr.toString(), "[object Attr]");
     }
 
     @Test
@@ -686,7 +686,7 @@ public class DOMDocumentTest extends LoboUnitTest {
     public void testProcessingInstruction() {
         Document document = domImpl.createDocument(null, null, null);
         ProcessingInstruction pi = document.createProcessingInstruction("xml-foo", "pseudoattr=\"value\"");
-        assertEquals("[object HTMLProcessingElement]", pi.toString());
+        assertEquals(pi.toString(), "[object HTMLProcessingElement]");
         assertNull(pi.getNextSibling());
         assertNull(pi.getPreviousSibling());
         assertNull(pi.getFirstChild());
@@ -731,14 +731,14 @@ public class DOMDocumentTest extends LoboUnitTest {
     public void testStyleProcessingInstruction() {
         ProcessingInstruction pi = domImpl.createDocument(null, null, null)
                 .createProcessingInstruction("xml-stylesheet", "type=\"text/css\" href=\"style.css\"");
-        assertEquals("[object HTMLProcessingElement]", pi.toString());
+        assertEquals(pi.toString(), "[object HTMLProcessingElement]");
     }
 
     @Test
     public void testStyleXSLProcessingInstruction() {
         ProcessingInstruction pi = domImpl.createDocument(null, null, null)
                 .createProcessingInstruction("xml-stylesheet", "type=\"application/xsl\" href=\"sheet.xsl\"");
-        assertEquals("[object HTMLProcessingElement]", pi.toString());
+        assertEquals(pi.toString(), "[object HTMLProcessingElement]");
     }
 
     @Test
@@ -766,15 +766,15 @@ public class DOMDocumentTest extends LoboUnitTest {
         assertEquals(0, sheet.getCssRules().getLength());
         style.setTextContent("body {color: blue;}");
         assertEquals(1, sheet.getCssRules().getLength());
-        assertEquals("<style>body {color: blue;}</style>", style.toString());
+        assertEquals(style.toString(), "<style>body {color: blue;}</style>");
 
         style.setTextContent("foo:");
-        assertEquals("<style>foo:</style>", style.toString());
+        assertEquals(style.toString(), "<style>foo:</style>");
         sheet = ((HTMLStyleElementImpl)style).getStyleSheet();
         assertEquals(0, sheet.getCssRules().getLength());
-        assertEquals("<style>foo:</style>", style.toString());
+        assertEquals(style.toString(), "<style>foo:</style>");
         style.normalize();
-        assertEquals("<style>foo:</style>", style.toString());
+        assertEquals(style.toString(), "<style>foo:</style>");
     }
 
     @Test
@@ -1107,7 +1107,7 @@ public class DOMDocumentTest extends LoboUnitTest {
         assertEquals(0, list.getLength());
         assertNull(list.item(-1));
         assertNull(list.item(0));
-        assertEquals("[object HTMLCollection]", list.toString());
+        assertEquals(list.toString(), "[object HTMLCollection]");
         it = list.iterator();
         assertFalse(it.hasNext());
     }
@@ -1639,23 +1639,23 @@ public class DOMDocumentTest extends LoboUnitTest {
         Document document = domImpl.createDocument("", "foo", null);
         Element element = document.getDocumentElement();
         element.setAttributeNS(Document.XML_NAMESPACE_URI, "xml:base", "http://www.example.com/");
-        assertEquals("http://www.example.com/", element.getAttribute("xml:base"));
+        assertEquals(element.getAttribute("xml:base"), "http://www.example.com/");
         Attr attr = element.getAttributeNode("xml:base");
         assertNotNull(attr);
         attr.setValue("jar:http://www.example.com/evil.jar!/file");
         assertNull(document.getBaseURI());
         document.setDocumentURI("http://www.example.com/foo.html");
-        assertEquals("http://www.example.com/foo.html", document.getBaseURI());
-        assertEquals("jar:http://www.example.com/evil.jar!/file", attr.getValue());
+        assertEquals(document.getBaseURI(), "http://www.example.com/foo.html");
+        assertEquals(attr.getValue(), "jar:http://www.example.com/evil.jar!/file");
         attr.setValue("file:/dev/zero");
-        assertEquals("http://www.example.com/foo.html", document.getBaseURI());
+        assertEquals(document.getBaseURI(), "http://www.example.com/foo.html");
     }
 
     @Test
     public void testLookupNamespaceURI() {
         Document document = domImpl.createDocument(Document.XML_NAMESPACE_URI, "x:doc", null);
         Element docelm = document.getDocumentElement();
-        assertEquals("[object HTMLElement]", docelm.toString());
+        assertEquals(docelm.toString(), "[object HTMLElement]");
         assertEquals(Document.XML_NAMESPACE_URI, docelm.lookupNamespaceURI("x"));
         assertNull(docelm.lookupNamespaceURI("z"));
         assertEquals(Document.XML_NAMESPACE_URI, document.lookupNamespaceURI("x"));

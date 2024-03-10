@@ -27,14 +27,14 @@
 package org.loboevolution.domts.level3;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.loboevolution.driver.LoboUnitTest;
 import org.loboevolution.html.dom.Notation;
 import org.loboevolution.html.node.Document;
 import org.loboevolution.html.node.DocumentType;
 import org.loboevolution.html.node.NamedNodeMap;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -62,7 +62,7 @@ public class nodegetbaseuri13Test extends LoboUnitTest {
         notation = (Notation) notationsMap.getNamedItem("notation1");
         baseURI = notation.getBaseURI();
         docURI = doc.getDocumentURI();
-        assertEquals("sameAsDocURI", docURI, baseURI);
+        assertEquals(docURI, baseURI, "sameAsDocURI");
         assertURIEquals("entityBase", null, null, null, null, "hc_staff", null, null, Boolean.TRUE, baseURI);
     }
 }
