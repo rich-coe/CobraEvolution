@@ -222,7 +222,7 @@ public class ElementImpl extends WindowEventHandlersImpl implements Element {
 			name = split[1];
 		} else {
 			if (!Strings.isXMLIdentifier(name)) {
-				throw new DOMException(DOMException.INVALID_CHARACTER_ERR, "The qualified name contains the invalid character");
+				throw new DOMException(DOMException.INVALID_CHARACTER_ERR, String.format("The qualified name contains the invalid character: '%s'", name));
 			}
 		}
 
